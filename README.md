@@ -11,7 +11,7 @@ One of the key objectives of the Directory and Authorisation Service Project is 
 This repository hosts a FHIR Implementation Guide (IG) for community consultation and collaboration.
 
 ### link to published site on build.fhir.org
-https://build.fhir.org/ig/AuDigitalHealth/HealthConnect/index.html
+https://build.fhir.org/ig/AuDigitalHealth/HCPD/index.html
 
 ## How to Build
 
