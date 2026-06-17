@@ -7,3 +7,7 @@ The Health Connect Provider Directory Requester is a system that creates and ini
 - [Health Connect Provider Directory Responder Actor](ActorDefinition-responder-actor-health-connect.html)
 
 The Health Connect Provider Directory Responder is a system that retrieves core digital health and administrative information. The set of capabilities (behaviours) for this actor is defined in [Health Connect Provider Directory Responder CapabilityStatement](CapabilityStatement-health-connect-provider-directory-responder.html).
+
+- [Health Connect Provider Directory Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html)
+
+The Health Connect Provider Directory Bulk Export Requester is a system that initiates bulk data export requests from the Health Connect Provider Directory system. This actor is specifically designed for bulk export operations and is responsible for submitting properly formatted export parameters and processing returned bulk data files, including handling resource removal lists. The set of capabilities (behaviours) for this actor is defined in [Health Connect Provider Directory Bulk Export Requester CapabilityStatement](CapabilityStatement-health-connect-bulk-export-requester.html).

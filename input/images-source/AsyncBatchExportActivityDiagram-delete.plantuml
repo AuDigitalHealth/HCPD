@@ -8,7 +8,7 @@ start
  
 :Step 2: [[BatchRequestStatus.html Request status]];
 floating note right #palegreen
-  **Option: Delete request**
+  **Option: Delete submitted request**
 end note
 
 :Step 3: [[BatchRequestResults.html Fetch results]];

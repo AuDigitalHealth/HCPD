@@ -5,7 +5,7 @@ Title: "Practitioner's Registered Profession Search Parameter"
 Description: "Search a Practitioner record by their registered profession using string values."
 * url = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/practitioner-regprof"
 * name = "SearchParameterPractitionerRegProf"
-* status = #draft
+* status = #active
 * experimental = false
 * publisher = "Australian Digital Health Agency"
 * contact.telecom.system = #email

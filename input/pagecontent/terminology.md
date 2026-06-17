@@ -15,20 +15,21 @@ ValueSets
 CodeSystems
 - [smd-interfaces](https://build.fhir.org/ig/hl7au/au-fhir-pd/CodeSystem-smd-interfaces.html) — http://hl7.org.au/fhir/pd/CodeSystem/smd-interfaces
 - [endpoint-payload-type (AU PD)](https://build.fhir.org/ig/hl7au/au-fhir-pd/CodeSystem-endpoint-payload-type.html) — http://hl7.org.au/fhir/pd/CodeSystem/endpoint-payload-type
-- [endpoint-connection-type (HL7 Terminology)](https://terminology.hl7.org/7.0.1/CodeSystem-endpoint-connection-type.html) — http://terminology.hl7.org/CodeSystem/endpoint-connection-type
 
 #### National Clinical Terminology Service (NCTS)
 
 CodeSystems
 - [Facility Amenities](https://healthterminologies.gov.au/fhir/CodeSystem/facility-amenity-1)
-- [Role Code](http://terminology.hl7.org/CodeSystem/v3-RoleCode)
+- [New Patient Availability](https://www.healthterminologies.gov.au/integration/R4/fhir/CodeSystem/new-patient-availability-1)
 - [Service Eligibility](https://healthterminologies.gov.au/fhir/CodeSystem/service-eligibility-1)
+- [IAR Levels of Care](https://healthterminologies.gov.au/fhir/CodeSystem/iar-levels-of-care-1)
 
 ValueSets
 - [Facility Amenities](https://healthterminologies.gov.au/fhir/ValueSet/facility-amenity-1)
+- [New Patient Availability](https://www.healthterminologies.gov.au/integration/R4/fhir/ValueSet/new-patient-availability-1)
 - [Service Delivery Role Type](https://healthterminologies.gov.au/fhir/ValueSet/service-delivery-location-role-type-1)
 - [Service Eligibility](https://healthterminologies.gov.au/fhir/ValueSet/service-eligibility-1)
-
+- [IAR Levels of Care](https://healthterminologies.gov.au/fhir/ValueSet/iar-levels-of-care-1)
 
 
 ### IG defined Terminology

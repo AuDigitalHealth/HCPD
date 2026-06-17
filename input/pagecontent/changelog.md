@@ -1,5 +1,35 @@
 **This change log documents the significant updates and resolutions implemented from version 0.1.0 of this IG to present.**
 
+### Release 26.0.0 (initial release)
+- Publication date: 2026-04-29
+- Publication status: Trial
+- Based on FHIR version: 4.0.1
+
+#### Changes in this version
+- Inserted HL7 FHIR Community process approved specification logo.
+- Migrated New Patient Availability CodeSystem and ValueSet to NCTS hosted terminology (https://www.healthterminologies.gov.au/integration/R4/fhir/CodeSystem/new-patient-availability-1 and https://www.healthterminologies.gov.au/integration/R4/fhir/ValueSet/new-patient-availability-1) instead of local definitions.
+- Incremented to initial release versioning 26.0.0 and active statuses for resources. 
+- Removed `HC Endpoint Identifier` in favour of using `HCPD Local Identifier`
+- Changed SearchParameter `hcepi` to work with the Local Identifier `XX` type. 
+- Removed the constraint identifier.type equals to `NOI` from HCPD-HSPO identifier dataType profile.
+- Updates last cases of HC to HCPD for better alignment with IG and Agency publishing framework. 
+- Adds a known issue explanation for use of AU PD `current` IG versioning. 
+- Declares FHIRPath v2.0.0 as a dependency. 
+- Adds guidance on the appropriate use of endpoints [39](https://github.com/AuDigitalHealth/HealthConnect/issues/39)
+- Changed the narrative guidance for HealthcareService.Location reference [46](https://github.com/AuDigitalHealth/HealthConnect/issues/46)
+- Added HCPD Export Request Parameters and Export Response List profiles for bulk data extraction.
+- Enhanced bulk data extraction documentation with profile references and examples.
+- Updated Health Connect Provider Directory Responder capability statement to include List resource support for HCPD Export Response List profile.
+- Added system-level export operation to Responder capability statement for bulk data export functionality with HCPD Export Response List integration.
+- Enhanced bulk export architecture with specialised `Health Connect Provider Directory Bulk Export Requester` actor that handles Parameters resource submission and List resource processing for suppression compliance.
+- Added Extensibility statement to scope.
+- Removed the Suppression extension, associated CodeSystem, ValueSet, and all narrative references.
+- Added guidance on data removal procedures via PCA in the Security and Privacy section.
+- Remove the IAR CodeSystem and ValueSet from being defined internally and referenced the NCTS. 
+- Adds further detail to the scope statement regarding intended audience for downstream users of the IG [47](https://github.com/AuDigitalHealth/HealthConnect/issues/47) 
+- Migrates the Known Issues to became a tab under Support in alignment with Agency publishing requirements. 
+- Removes the PCA-HSI extension as redundant do the existence of the HCPD Source Identifier. 
+
 ### Release 0.3.0 (Snapshot 3)
 - Publication date: 2026-03-02
 - Publication status: Preview 
@@ -14,16 +44,16 @@
 - No longer internally defines the ValueSet or CodeSystem for ServiceInterfaces on Endpoint but rather points to AU PD's implementation.
 - Added dependency of AU Provider Directory IG v2.1.0
 - Changed SearchParameters to become non-experimental. 
-- Removed bundle batch search guidance. No longer reccomended for synchronous 'standard' searching. 
+- Removed bundle batch search guidance. No longer recommended for synchronous 'standard' searching. 
 - Reformat the Guidance section to place SearchParameter related material entirely under it's own section.
 - Added Security and Privacy tab.
 - Added more detailed definitions to the IAR CodeSystem. 
-- Reprofile the new patient availability extension from Boolean to CodeableConcept to allign with NHSD and PCA [42](https://github.com/AuDigitalHealth/HealthConnect/issues/42) 
+- Reprofile the new patient availability extension from Boolean to CodeableConcept to align with NHSD and PCA [42](https://github.com/AuDigitalHealth/HealthConnect/issues/42) 
 - Define NCTS profile types on terminology artefacts. 
 - Add the Contact Purpose extension on HealthcareService.telecom [43](https://github.com/AuDigitalHealth/HealthConnect/issues/43)
-- Add the extension `hc-suppressed` describe the guidance and apply to profiles: Practitioner, PractitionerRole and Organization.
+- Add the extension `hcpd-suppressed` describe the guidance and apply to profiles: Practitioner, PractitionerRole and Organization.
 - Removed genderIdentity extension, value set, search parameter guidance, examples, and narrative. 
-- Add identifier profile HC-LI for internal system use. 
+- Add identifier profile hcpd-LI for internal system use. 
 - Change namespaces on extensions to allow later re-factor into a Common Components IG. 
 - removed constraints for Organization.alias and Organization.address:postal
 
@@ -41,7 +71,7 @@
 - Change cardinalities on PractitionerRole.Endpoint, Location.Endpoint & HealthcareService.Endpoint from 0..1 -> 0..*. [#12](https://github.com/AuDigitalHealth/HealthConnect/issues/12)
 - The fixed value for `HSP-O Identifier.type.coding.code` has been changed from `http://terminology.hl7.org/CodeSystem/v2-0203` code `XX` to `http://terminology.hl7.org.au/CodeSystem/v2-0203` code `NOI`, aligning with other AU Base national organisation identifiers such as HPI-I and PAI-O. [#8](https://github.com/AuDigitalHealth/HealthConnect/issues/8)
 - The short description and definition of Practitioner.qualification changed to "Professional registration details of the practitioner".
-- Removed case sensitive element from hc-iar-levels-of-care code system definition. [#15](https://github.com/AuDigitalHealth/HealthConnect/issues/15)
+- Removed case sensitive element from hcpd-iar-levels-of-care code system definition. [#15](https://github.com/AuDigitalHealth/HealthConnect/issues/15)
 - Change cardinality on Endpoint.identifier from 2..* -> 1..*.
 - Correct the numbering of navigation tabs. [#5](https://github.com/AuDigitalHealth/HealthConnect/issues/5)
 - Created a new Health Connect Provider Directory Responder actor and capability statement that is responsible for providing responses to queries submitted by Health Connect Provider Directory Requester actors.
@@ -80,7 +110,7 @@
 - Update `hcepi` and `prn` search parameters from string to token type for built-in exact matching without requiring modifiers.
 - Add proximity search sorting guidance with `_sort=near` parameter for closest-first ordering of Location results.
 - Updated `starttime` and `endtime` SearchParameters to support numeric prefix operators (ge, gt, le, lt, ne) for time-based searches. Changed to #number type for both. Time values are internally converted to HHMM integers to allow for prefix use. Limitations described. 
-- Update guidance for best use of `prn` search paramter. 
+- Update guidance for best use of `prn` search parameter.
 - Rename slice professionalregistrationnumber to peakbodyregistrationnumber to add clarity about use case. 
 - Give clearer guidance on client Requester actor having no requirements to implement any particular SearchParameters. [#36](https://github.com/AuDigitalHealth/HealthConnect/issues/36)
 - Add `agent.role` and `agent.type` data elements to existing Provenance examples.

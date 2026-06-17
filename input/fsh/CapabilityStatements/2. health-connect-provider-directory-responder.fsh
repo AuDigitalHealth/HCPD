@@ -6,8 +6,9 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 * name = "HealthConnectProviderDirectoryResponder"
 * url = "http://digitalhealth.gov.au/fhir/hcpd/CapabilityStatement/health-connect-provider-directory-responder"
-* status = #draft
-* date = "2025-11-27"
+* status = #active
+* experimental = false
+* date = "2026-04-29"
 * kind = #instance
 * fhirVersion = #4.0.1
 
@@ -30,7 +31,7 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // Add HCProvenance resource
 * rest.resource[+].type = #Provenance
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-provenance"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-provenance"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
 * rest.resource[=].documentation = "HC Provenance resources track the lineage of data retrieved, updated, or verified from external systems of record."
@@ -52,10 +53,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // Organization
 * rest.resource[+].type = #Organization
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-organization"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-organization"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section defines the supported interactions for the [HC Organization](StructureDefinition-hc-organization.html) profile of the Organization resource type."
+* rest.resource[=].documentation = "This section defines the supported interactions for the [HCPD Organization](StructureDefinition-hcpd-organization.html) profile of the Organization resource type."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -80,10 +81,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // Location
 * rest.resource[+].type = #Location
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-location"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-location"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section describes the supported interactions for the [HC Location](StructureDefinition-hc-location.html) profile. Each Location resource conforming to this profile identifies a physical or virtual place associated with healthcare services in the Health Connect Provider Directory, enabling clients to discover, filter, and reference service delivery sites."
+* rest.resource[=].documentation = "This section describes the supported interactions for the [HCPD Location](StructureDefinition-hcpd-location.html) profile. Each Location resource conforming to this profile identifies a physical or virtual place associated with healthcare services in the Health Connect Provider Directory, enabling clients to discover, filter, and reference service delivery sites."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -129,10 +130,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // HealthcareService
 * rest.resource[+].type = #HealthcareService
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-healthcareservice"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-healthcareservice"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section describes the supported interactions for the [HC Healthcare Service](StructureDefinition-hc-healthcareservice.html) profile. Each HealthcareService resource conforming to this profile identifies a healthcare service in the Health Connect Provider Directory, enabling clients to discover, filter, and reference healthcare services that are provided."
+* rest.resource[=].documentation = "This section describes the supported interactions for the [HCPD Healthcare Service](StructureDefinition-hcpd-healthcareservice.html) profile. Each HealthcareService resource conforming to this profile identifies a healthcare service in the Health Connect Provider Directory, enabling clients to discover, filter, and reference healthcare services that are provided."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -180,10 +181,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // PractitionerRole
 * rest.resource[+].type = #PractitionerRole
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-practitionerrole"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitionerrole"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section defines the supported interactions for the [HC Practitioner Role](StructureDefinition-hc-practitionerrole.html) profile of the PractitionerRole resource type. Each PractitionerRole resource conforming to the [HC Practitioner Role](StructureDefinition-hc-practitionerrole.html) profile describes a practitioner in a role at a healthcare service."
+* rest.resource[=].documentation = "This section defines the supported interactions for the [HCPD Practitioner Role](StructureDefinition-hcpd-practitionerrole.html) profile of the PractitionerRole resource type. Each PractitionerRole resource conforming to the [HCPD Practitioner Role](StructureDefinition-hcpd-practitionerrole.html) profile describes a practitioner in a role at a healthcare service."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -231,10 +232,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // Practitioner
 * rest.resource[+].type = #Practitioner
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-practitioner"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section describes the supported interactions for the [HC Practitioner](StructureDefinition-hc-practitioner.html) profile. Each Practitioner resource conforming to this profile represents an individual healthcare provider registered in the Health Connect Provider Directory, enabling clients to search, identify, and reference practitioners and their associated roles and service locations."
+* rest.resource[=].documentation = "This section describes the supported interactions for the [HCPD Practitioner](StructureDefinition-hcpd-practitioner.html) profile. Each Practitioner resource conforming to this profile represents an individual healthcare provider registered in the Health Connect Provider Directory, enabling clients to search, identify, and reference practitioners and their associated roles and service locations."
 * rest.resource[=].interaction.code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -268,10 +269,10 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 
 // Endpoint
 * rest.resource[+].type = #Endpoint
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hc-endpoint"
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-endpoint"
 * rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section describes the supported interactions for the [HC Endpoint](StructureDefinition-hc-endpoint.html) profile. Each Endpoint resource conforming to this profile provides connection details for electronic services available through the Health Connect Provider Directory, allowing clients to discover and interact with service endpoints in a standardised way."
+* rest.resource[=].documentation = "This section describes the supported interactions for the [HCPD Endpoint](StructureDefinition-hcpd-endpoint.html) profile. Each Endpoint resource conforming to this profile provides connection details for electronic services available through the Health Connect Provider Directory, allowing clients to discover and interact with service endpoints in a standardised way."
 * rest.resource[=].interaction.code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].versioning = #versioned
@@ -309,3 +310,53 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHALL
+
+// List (HCPD Export Response List for Bulk Data Export)
+* rest.resource[+].type = #List
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-response-list"
+* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].profile.extension[=].valueCode = #SHALL
+* rest.resource[=].documentation = "This resource declares support for the [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) profile. List resources conforming to this profile are automatically generated and included as part of bulk data export operations to communicate which resource identifiers should be removed from downstream client systems. These List resources are not directly searchable or accessible via standard FHIR REST operations, but are provided exclusively through the bulk export process."
+* rest.resource[=].interaction[0].code = #read
+* rest.resource[=].interaction[=].documentation = "Read access to HCPD Export Response List resources obtained through bulk export operations"
+* rest.resource[=].versioning = #versioned
+* rest.resource[=].readHistory = false
+
+// Parameters (HCPD Export Request Parameters for Bulk Data Export)
+* rest.resource[+].type = #Parameters
+* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"
+* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].profile.extension[=].valueCode = #SHALL
+* rest.resource[=].documentation = "This resource declares support for processing [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) resources as input to bulk data export operations. Parameters resources conforming to this profile are used to control the scope, format, and filtering criteria for bulk exports. These resources are processed as part of the $export operation and are not directly stored or searchable."
+* rest.resource[=].interaction[0].code = #read
+* rest.resource[=].interaction[+].code = #search-type
+* rest.resource[=].interaction[=].documentation = "Process HCPD Export Request Parameters as input to bulk export operations"
+* rest.resource[=].versioning = #versioned
+* rest.resource[=].readHistory = false
+// Aggregated searchInclude parameters from all other resource types
+* rest.resource[=].searchInclude[0] = "Provenance:target"
+* rest.resource[=].searchInclude[+] = "Organization:partOf"
+* rest.resource[=].searchInclude[+] = "Location:organization"
+* rest.resource[=].searchInclude[+] = "Location:endpoint"
+* rest.resource[=].searchInclude[+] = "HealthcareService:location"
+* rest.resource[=].searchInclude[+] = "HealthcareService:organization"
+* rest.resource[=].searchInclude[+] = "HealthcareService:endpoint"
+* rest.resource[=].searchInclude[+] = "PractitionerRole:practitioner"
+* rest.resource[=].searchInclude[+] = "PractitionerRole:service"
+* rest.resource[=].searchInclude[+] = "PractitionerRole:organization"
+* rest.resource[=].searchInclude[+] = "PractitionerRole:location"
+* rest.resource[=].searchInclude[+] = "PractitionerRole:endpoint"
+// Aggregated searchRevInclude parameters from all other resource types
+* rest.resource[=].searchRevInclude[0] = "Location:organization"
+* rest.resource[=].searchRevInclude[+] = "Provenance:target"
+* rest.resource[=].searchRevInclude[+] = "HealthcareService:location"
+* rest.resource[=].searchRevInclude[+] = "PractitionerRole:service"
+* rest.resource[=].searchRevInclude[+] = "PractitionerRole:practitioner"
+* rest.resource[=].searchRevInclude[+] = "HealthcareService:endpoint"
+* rest.resource[=].searchRevInclude[+] = "Location:endpoint"
+* rest.resource[=].searchRevInclude[+] = "PractitionerRole:endpoint"
+
+// System-level operations for bulk data export
+* rest.operation[+].name = "export"
+* rest.operation[=].definition = "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/export"
+* rest.operation[=].documentation = "This bulk data export operation expects request parameters conforming to the [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) profile which defines the required parameter structure for _outputFormat, _type, _typeFilter, and optional _since parameters. The server returns URLs to ndjson files containing the requested resource types. When applicable, the server may automatically inject [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) resources into the output to indicate resource identifiers marked for removal from downstream client systems."

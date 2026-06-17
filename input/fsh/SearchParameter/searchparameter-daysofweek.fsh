@@ -8,7 +8,7 @@ Title: "Days of Week Search Parameter"
 Description: "Search HealthcareServices or PractitionerRoles by days of week availability. Supports multiple days using OR logic."
 * url = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/daysofweek"
 * name = "SearchParameterDaysOfWeek"
-* status = #draft
+* status = #active
 * experimental = false
 * publisher = "Australian Digital Health Agency"
 * code = #daysofweek

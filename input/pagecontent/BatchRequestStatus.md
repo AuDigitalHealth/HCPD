@@ -61,12 +61,14 @@ Response HTTP body: absent
 #### Response - completed
 
 Example of a successful response manifest JSON:
+```
 { "transactionTime": "2026-02-19T10:27:53.423+11:00", "request": "http://localhost:8080/fhir/$export", "requiresAccessToken": true, "output": [ { "type": "Organization", "url": "http://localhost:8080/fhir/Binary/fnQjLPLp7x3VpEAsJd4mZ9Fz5mLbZWkY" } ], "error": [] }
+```
 
 Example of unsuccessful response manifest JSON:
-
+```
 { "transactionTime": "2026-02-19T10:23:53.417+11:00", "request": "http://localhost:8080/fhir/$export", "requiresAccessToken": true, "output": [], "error": [], "message": "Export complete, but no data to generate report for job instance: 7a75faaa-ac94-4380-a10f-bfb733dba09e" }
-
+```
 ### Follow-up actions
 
 Following successful request status polling, there are two possible follow-up actions:

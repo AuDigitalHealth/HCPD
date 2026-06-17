@@ -3,23 +3,20 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: au.gov.digitalhealth.r4.hcpd
+id: au.gov.digitalhealth.hcpd
 canonical: http://digitalhealth.gov.au/fhir/hcpd
-date: 2026-02-20
+date: 2026-04-29
 name: HCPD_ImplementationGuide
 title: Health Connect Australia Provider Directory FHIR Implementation Guide
 description: This Implementation Guide defines an Health Connect Australia Provider Directory within Australian context.
 
-status: draft # draft | active | retired | unknown
-extension:
-  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-    valueCode: draft
+status: active # draft | active | retired | unknown
     
-version: 0.3.0-preview
+version: "26.0.0"
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 
-copyrightYear: 2025+
-releaseLabel: Preview
+copyrightYear: 2026+
+releaseLabel: Trial
 license: CC-BY-4.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 
 useContext:
@@ -78,14 +75,14 @@ pages:
       title: General Guidance
     bulk-data-extraction.md:
       title: Bulk Data Extraction
-  BatchRequestSubmission.md:
-    title: Batch Request Submission
-  BatchRequestStatus.md:
-    title: Batch Request Status
-  BatchRequestResults.md:
-    title: Batch Request Results
-  BatchRequestDelete.md:
-    title: Batch Request Delete
+      BatchRequestSubmission.md:
+        title: Batch Request Submission
+      BatchRequestStatus.md:
+        title: Batch Request Status
+      BatchRequestResults.md:
+        title: Batch Request Results
+      BatchRequestDelete.md:
+        title: Batch Request Delete
   security-and-privacy.md:
     title: Security and Privacy
   artifacts.html:
@@ -104,12 +101,14 @@ pages:
     title: Examples
   support.md:
     title: Support
+    known-issues.md:
+      title: Known Issues
     downloads.md:
       title: Downloads
   changelog.md:
     title: Change Log
-  disclaimers.md:
-    title: Disclaimers
+  legal.md:
+    title: Licence and Legal
 
 #
 #
@@ -175,7 +174,8 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/iar-levels-of-care, 
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/new-patient-availability, 
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/practitioner-role-communication, 
-                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/referral-information-for-referrer]
+                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/referral-information-for-referrer,
+                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/suppressed]
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
 # │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
@@ -199,9 +199,11 @@ menu:
     "Capability Statements": capability-statements.html
     "Search Parameters": search-parameters.html
   Examples: examples.html
-  Support: downloads.html
+  Support:
+    "Known Issues": known-issues.html
+    "Downloads": downloads.html
   Change Log: changelog.html
-  Disclaimers: disclaimers.html
+  Licence and Legal: legal.html
   
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
@@ -295,8 +297,8 @@ contact:
 # * modifierExtension
 experimental: false
 # * useContext
-copyright: Copyright © 2025 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
-packageId: au.gov.digitalhealth.r4.hcpd
+copyright: Copyright © 2026 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+packageId: au.gov.digitalhealth.hcpd
 #
 #
 # ╭──────────────────────────────────────────SUSHI flags───────────────────────────────────────────╮

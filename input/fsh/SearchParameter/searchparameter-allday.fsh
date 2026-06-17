@@ -8,7 +8,7 @@ Title: "All Day Search Parameter"
 Description: "Search HealthcareServices or PractitionerRoles by whether they are available all day."
 * url = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/allday"
 * name = "SearchParameterAllDay"
-* status = #draft
+* status = #active
 * experimental = false
 * publisher = "Australian Digital Health Agency"
 * code = #allday

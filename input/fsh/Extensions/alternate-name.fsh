@@ -1,10 +1,10 @@
-Extension: AlternateName
+Extension: Alternate_Name
 Id: alternate-name
 Title: "Alternate Name"
 Description: "This extension applies to PractitionerRole, and represents a name by which a practitioner chooses to be known in the context of the delivery of a specific healthcare service."
 Context: PractitionerRole
 * ^version = "1.0.0"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
 * ^publisher = "Australian Digital Health Agency"
 * ^contact.name = "Australian Digital Health Agency"

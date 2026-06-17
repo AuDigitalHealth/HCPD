@@ -5,7 +5,7 @@ Title: "HealthcareService Billing Search Parameter"
 Description: "Search for HealthcareService resources by billing information."
 * url = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/healthcareservice-billing"
 * name = "SearchParameterHealthcareServiceBilling"
-* status = #draft
+* status = #active
 * experimental = false
 * publisher = "Australian Digital Health Agency"
 * code = #hsbilling

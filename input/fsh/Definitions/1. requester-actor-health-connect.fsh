@@ -6,7 +6,8 @@ Description: "The Health Connect Provider Directory Requester actor represents a
 Health Connect Provider Directory system."
 
 * name = "RequesterActorHealthConnect"
-* status = #draft
+* status = #active
+* experimental = false
 * type = http://hl7.org/fhir/examplescenario-actor-type#system
 * documentation = """
 - **SHALL** implement the [mandatory](conformance.html) requirements for the elements defined as such in this implementation guide.

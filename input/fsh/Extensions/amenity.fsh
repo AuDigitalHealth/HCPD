@@ -5,7 +5,7 @@ Description: "Physical features or amenities available within, or in close proxi
 * ^context.type = #element
 * ^context.expression = "Location"
 * ^url = "http://digitalhealth.gov.au/fhir/cc/StructureDefinition/amenity"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
 * ^publisher = "Australian Digital Health Agency"
 * ^contact.name = "Australian Digital Health Agency"

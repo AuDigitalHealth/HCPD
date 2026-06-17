@@ -1,9 +1,9 @@
-Extension: ReferralInformationForReferrer
+Extension: Referral_Information_For_Referrer
 Id: referral-information-for-referrer
 Title: "Referral Information for Referrer"
-Description: "Referral instructions and information for healthcare service providers that may wish to refer patients / clients to the healthcare service. Modelled after PCA but for Health Connect context."
+Description: "Referral instructions and information for healthcare service providers that may wish to refer patients / clients to the healthcare service. "
 * ^url = "http://digitalhealth.gov.au/fhir/cc/StructureDefinition/referral-information-for-referrer"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
 * ^publisher = "Australian Digital Health Agency"
 * ^contact.name = "Australian Digital Health Agency"

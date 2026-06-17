@@ -13,3 +13,9 @@ For HCPD, specific security requirements include:
 - Systems **SHALL** use TLS version 1.2 or higher for data exchange.
 - Systems **SHOULD** use TLS version 1.3 for data exchange.
 - Systems **SHOULD** use the Australian Cyber Security Centre (ACSC) [TLS configuration guidelines](https://www.cyber.gov.au/resources-business-and-government/maintaining-devices-and-systems/system-hardening-and-administration/web-hardening/implementing-certificates-tls-https-and-opportunistic-tls) that include recommendations for configuring protocol features and acceptable cipher suites when implementing TLS.
+
+#### Data Removal and Privacy Controls
+
+Organizations and Practitioners can elect to have their information removed from the Health Connect Provider Directory (HCPD) through [Provider Connect Australia (PCA)](https://www.digitalhealth.gov.au/healthcare-providers/initiatives-and-programs/provider-connect-australia). 
+
+For more information about data removal procedures, providers should consult the PCA documentation and contact the Australian Digital Health Agency directly.

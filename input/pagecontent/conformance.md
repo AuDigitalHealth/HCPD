@@ -1,17 +1,27 @@
-This page records the conformance expectations for the Health Connect Provider Directory Implementation Guide as they apply to the [Health Connect Provider Directory Requester Actor](CapabilityStatement-health-connect-provider-directory-requester.html) (the client that performs searches and reads). It describes the minimum set of profiles, interactions and search parameters a searching system SHALL support to interact with the [Health Connect Provider Directory Responder Actor](CapabilityStatement-health-connect-provider-directory-responder.html).
+This page records the conformance expectations for the Health Connect Provider Directory Implementation Guide. The IG defines two client actors:
+
+- [Health Connect Provider Directory Requester Actor](CapabilityStatement-health-connect-provider-directory-requester.html)
+- [Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html)
+
+Client systems **SHALL** claim conformance to a **minimum of one actor**, but are **not required** to be conformant to both actors.
 
 ### FHIR conformance
 
-Implementations SHALL at minimum be able to discover and read resources that conform to the HC profiles listed below. The searching system SHALL implement the REST interactions and search behaviours described in this document.
+As a healthcare provider-focused implementation guide, conformance requirements are centred on client systems' ability to parse, validate, and consume FHIR resources that conform to the HC profile specifications. Implementations SHALL demonstrate profile conformance by respecting the data structures defined in profiles and adhering to the structural definitions, cardinality constraints, invariants, and terminology bindings specified within the HC profiles when processing resources retrieved from the Health Connect Provider Directory.
 
-#### Profiles and interactions
+#### Profiles and data structure conformance
 
-In order to be conformant as a Health Connect Provider Directory Requester Actor the client searching system SHALL be able to, at a minimum interact with the following target profiles:
+Client systems claiming conformance as a **Health Connect Provider Directory Requester Actor** SHALL be able to correctly interpret and process resources conforming to the following target profiles, respecting their defined data structures:
 
-- [HC Organization](StructureDefinition-hc-organization.html) — organisation-level discovery and reads
-- [HC Practitioner](StructureDefinition-hc-practitioner.html) — individual practitioner discovery and reads
+- [HC Organization](StructureDefinition-hcpd-organization.html) — organisation-level data structure conformance for discovery and reads
+- [HC Practitioner](StructureDefinition-hcpd-practitioner.html) — individual practitioner data structure conformance for discovery and reads
 
-For the profiles above, Health Connect Provider Directory Requester Actors SHOULD support discovery and retrieval operations (for example `search` and `read`). See the FHIR HTTP operations documentation ([FHIR HTTP operations](https://hl7.org/fhir/R4/http.html)) and the AU Core general requirements ([AU Core general requirements](https://hl7.org.au/fhir/core/2.0.0-ballot/general-requirements.html)) for full details. Health Connect Provider Directory Requester Actors SHOULD consult the target Server's `CapabilityStatement` to determine the exact set of supported interactions.
+Client systems claiming conformance as a **Bulk Export Requester Actor** SHALL be able to correctly interpret and process bulk exported resources conforming to the following target profiles, respecting their defined data structures:
+
+- [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) — parameters data structure conformance for initiating bulk export operations
+- [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) — list data structure conformance for processing removal operations in bulk export responses
+
+For the profiles above, Health Connect Provider Directory Requester Actors SHOULD support discovery and retrieval operations (for example `search` and `read`) while ensuring they can correctly parse and utilize the structured data according to profile specifications. See the FHIR HTTP operations documentation ([FHIR HTTP operations](https://hl7.org/fhir/R4/http.html)) and the AU Core general requirements ([AU Core general requirements](https://hl7.org.au/fhir/core/2.0.0-ballot/general-requirements.html)) for full details. Health Connect Provider Directory Requester Actors SHOULD consult the target Server's `CapabilityStatement` to determine the exact set of supported interactions.
 
 #### Search parameters and terminology
 
@@ -37,10 +47,6 @@ This document is intentionally narrow in scope for the Requester actor.
 #### Missing data
 
 It is an expectation that [Health Connect Provider Directory Requester Actor](CapabilityStatement-health-connect-provider-directory-requester.html) implementers SHALL be able to handle cases where missing data exists. Where mandatory elements are missing, this will be indicated by the established convention in FHIR, i.e. supplying the extension [`DataAbsentReason`](https://hl7.org/fhir/R4/extension-data-absent-reason.html).
-
-#### Suppressed data
-
-This IG does not define data-suppression; alternative mechanisms have been enacted to control access or redaction where appropriate.
 
 
 ### Software conformance profile

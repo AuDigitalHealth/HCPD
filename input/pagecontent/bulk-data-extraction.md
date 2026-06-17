@@ -11,7 +11,7 @@ FHIR Bulk Data extraction consists of several key components:
 - **Data scope selection** - Defining which resources and data subsets to extract
 - **Asynchronous processing** - Managing long-running export operations with status tracking
 - **NDJSON format** - Standardised new-line delimited JSON output format
-- **Secure file retrieval** - Downloading completed extracts with appropriate authorization
+- **Secure file retrieval** - Downloading completed extracts with appropriate authorisation
 
 **Note:** Bulk export requests require a FHIR Parameters resource in the request body to specify the export parameters. This allows for complex parameter combinations and ensures proper encoding of multiple `_typeFilter` values.
 

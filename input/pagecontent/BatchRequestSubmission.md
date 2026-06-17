@@ -17,7 +17,7 @@ Request submissions have four key components:
 
 ### Preconditions
 
-The client **SHALL** ensure that all individual export queries are structured correctly inside of a `Parameters` resource with a corresponding `_typeFilter` for each resource type.
+The client **SHALL** ensure that all individual export queries are structured correctly inside of a `Parameters` resource with a corresponding `_typeFilter` for each resource type. This requirement is enforced by invariant `hcpd-exp-1` in the [HCPD Export Request Parameters profile](StructureDefinition-hcpd-export-request-parameters.html). 
 
 ### Request to server
 
@@ -32,7 +32,7 @@ The request **SHALL** include specific headers and a Parameters resource in the 
 
 #### Request body parameters
 
-The batch export request uses a FHIR Parameters resource in the request body to specify export parameters. This allows for complex parameter combinations and ensures proper encoding of multiple `_typeFilter` values.
+The batch export request uses a FHIR Parameters resource in the request body to specify export parameters. The Parameters resource **SHALL** conform to the [HCPD Export Request Parameters profile](StructureDefinition-hcpd-export-request-parameters.html). This profile ensures consistent parameter combinations and proper encoding of multiple `_typeFilter` values.
 
 #### Geographical scope options
 
@@ -73,12 +73,6 @@ Bulk extraction focused on specific healthcare services using standard FHIR serv
   - PractitionerRoles and Practitioners facilitating the services
   - Endpoints associated with service delivery
 
-##### Standard FHIR Bulk Export parameters
-- `_type` - Comma-separated list of resource types to include (Organization,Location,Practitioner,PractitionerRole,HealthcareService,Endpoint,Provenance)
-- `_since` - Only resources updated since specified timestamp (ISO 8601 format)
-- `_typeFilter` - Apply export criteria to specific resource types (e.g., `Location?address-state=NSW`)
-- `_outputFormat` - Specifies the format of exported data files (default: application/fhir+ndjson)
-
 ##### Supported filtering approaches
 
 **Geographical Filtering:**
@@ -92,6 +86,8 @@ Bulk extraction focused on specific healthcare services using standard FHIR serv
 
 **Service Type Filtering:**
 - Use `_typeFilter=HealthcareService?type=[code]` for service type filtering
+
+For detailed descriptions of all parameters and their usage, see the [HCPD Export Request Parameters profile](StructureDefinition-hcpd-export-request-parameters.html).
 
 #### Examples
 
@@ -109,6 +105,9 @@ Accept: application/fhir+json
 
 {
     "resourceType": "Parameters",
+    "meta": {
+        "profile": ["http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"]
+    },
     "parameter": [
         {
             "name": "_outputFormat",
@@ -154,6 +153,9 @@ Accept: application/fhir+json
 
 {
     "resourceType": "Parameters",
+    "meta": {
+        "profile": ["http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"]
+    },
     "parameter": [
         {
             "name": "_outputFormat",
@@ -203,6 +205,9 @@ Accept: application/fhir+json
 
 {
     "resourceType": "Parameters",
+    "meta": {
+        "profile": ["http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"]
+    },
     "parameter": [
         {
             "name": "_outputFormat",
@@ -231,6 +236,9 @@ Accept: application/fhir+json
 
 {
     "resourceType": "Parameters",
+    "meta": {
+        "profile": ["http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"]
+    },
     "parameter": [
         {
             "name": "_outputFormat",
@@ -260,6 +268,9 @@ Accept: application/fhir+json
 
 {
     "resourceType": "Parameters",
+    "meta": {
+        "profile": ["http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"]
+    },
     "parameter": [
         {
             "name": "_outputFormat",
