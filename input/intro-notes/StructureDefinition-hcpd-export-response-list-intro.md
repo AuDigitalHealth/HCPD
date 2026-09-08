@@ -1,7 +1,7 @@
 ## Scope
 This section describes the structure and intended use for a HCPD Export Response List resource. This resource is used **ONLY** within the context of the [Bulk Data Extract](bulk-data-extraction.html) capability of the HCPD system. Practitioners and Organizations may elect to no longer have their data published on the HCPD system. This intent can be communicated through the upstream data ingestion source (PCA) and will subsequently cascade to HCPD.  
 
-The HCPD Export Response List resource is used to communicate to [Client Requestor Actors](ActorDefinition-requester-actor-health-connect.html) which resources **SHALL** be removed from their local systems. Conformance with this requirement is mandatory. Client Requestor Actors **SHALL** establish and maintain processes to ensure that the identified resources are removed in accordance with this specification.
+The HCPD Export Response List resource is used to communicate to [Client Requester Actors](ActorDefinition-requester-actor-health-connect.html) which resources **SHALL** be removed from their local systems. Conformance with this requirement is mandatory. Client Requester Actors **SHALL** establish and maintain processes to ensure that the identified resources are removed in accordance with this specification.
 
 ## Usage notes
 
@@ -48,6 +48,6 @@ The HCPD Export Response List resource contains identifiers for HCPD resources t
 - The identifier systems indicate the resource type and particular identifiers that are used and can be expected by implementers:
 
 ### Implementation requirements and processing
-Client Requestor Actors of the Bulk Data Extract capability **SHALL** establish processes/mechanisms where identifiers contained within a `HCPD Export Response List` resource can be referenced to resources, and then those resources are to be purged from their local systems.
+Client Requester Actors of the Bulk Data Extract capability **SHALL** establish processes/mechanisms where identifiers contained within a `HCPD Export Response List` resource can be referenced to resources, and then those resources are to be purged from their local systems.
 
 

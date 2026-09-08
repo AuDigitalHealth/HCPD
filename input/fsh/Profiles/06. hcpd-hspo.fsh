@@ -21,16 +21,6 @@ Title: "HCPD Healthcare Support Service Provider - Organisation (HCPD HSP-O)"
 Description: "This identifier profile defines a Healthcare Support Service Provider Organisation in an Australian context. An HSP-O is assigned under the HI Service to a service (in-home care support and personal care services) where healthcare is provided. A HSP-O can only be of 'seed' type. An Organization cannot be assigned both an HPI-O and an HSP-O; only one identifier is assigned by the HI Service."
 * ^experimental = false
 * ^status = #active
-* ^publisher = "Australian Digital Health Agency"
-* ^contact.name = "Australian Digital Health Agency"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.digitalhealth.gov.au"
-* ^contact.telecom[+].system = #email
-* ^contact.telecom[=].value = "help@digitalhealth.gov.au"
-* ^useContext.code = http://terminology.hl7.org/CodeSystem/usage-context-type#jurisdiction
-* ^useContext.valueCodeableConcept = urn:iso:std:iso:3166#AU "Australia"
-* ^copyright = "Copyright © 2026 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See https://creativecommons.org/licenses/by/4.0/."
-
 * . ^short = "Healthcare Support Service Provider Organisation (HSP-O) Identifier"
 * . ^definition = "Identifier assigned under the HI Service organisations that do not directly provide healthcare services but provide care and support services to older Australians or people with disability may register with the HI Service for a Healthcare Support Service Provider Organisation (HSP-O) identifier. This includes organisations that provide in-home care support and personal care services. Providers with a HSP-O will not have access to the My Health Record system."
 * system 1..
@@ -41,7 +31,10 @@ Description: "This identifier profile defines a Healthcare Support Service Provi
 * value obeys inv-hspo-0 and inv-hspo-1 and inv-hspo-2
 
 * extension contains
+    HI_Services_Identifier_Status named hcpd-hspo-status 1..1 MS and
     HI_Service_Organisation_Classification named hi-org-classification 1..1 MS
+* extension[hcpd-hspo-status] ^short = "HI Services Identifier Organisation status"
+* extension[hcpd-hspo-status] ^definition = "HI Services Identifier Organisation status for the HSP-O identifier under the HI Service."
 * extension[hi-org-classification] ^short = "Organization classification - fixed to 'seed' for HSP-O"
 * extension[hi-org-classification] ^definition = "Organization classification for HSP-O identifiers is always 'seed'."
 * extension[hi-org-classification].valueCodeableConcept.coding = $hi-org-class-cs#seed "Seed" (exactly)

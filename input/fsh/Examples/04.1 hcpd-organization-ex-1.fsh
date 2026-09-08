@@ -6,8 +6,12 @@ Description: "An Aged Care Facility example conforming to the HCPD Organization 
 
 * meta.lastUpdated = "2025-08-30T09:15:00Z"
 
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#organisation-initiated
+* extension[suppressed].extension[includeSelf].valueBoolean = true
+
 * active = true
 * identifier[hpio].value = "8003626566707032"
+* identifier[hpio].extension[hpio-status].valueCoding = $hcpd-hi-status-cs#A "Active"
 * identifier[hpio].extension[hi-org-classification].valueCodeableConcept.coding = $hi-org-class-cs#network "Network"
 * identifier[abn].system = "http://hl7.org.au/id/abn"
 * identifier[abn].type.text = "ABN"
@@ -17,7 +21,7 @@ Description: "An Aged Care Facility example conforming to the HCPD Organization 
 * identifier[acn].value = "123456789"
 
 
-* name = "Example Aged Care Facility"
+* name.extension[dataAbsentReason].valueCode = #masked
 * alias = "Ye old Example Aged Care"
 
 * telecom[+].system = #phone
@@ -34,7 +38,7 @@ Description: "An Aged Care Facility example conforming to the HCPD Organization 
 * telecom[=].use = #work
 
 * telecom[+].system = #url
-* telecom[=].value = "https://www.mocklocation.com.au"
+* telecom[=].value = "https://www.example.com/mocklocation"
 * telecom[=].use = #work
 * telecom[+].system = #fax
 * telecom[=].value = "+61 2 6666 7777"

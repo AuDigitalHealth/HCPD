@@ -11,16 +11,13 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * url = "http://digitalhealth.gov.au/fhir/hcpd/CapabilityStatement/health-connect-provider-directory-requester"
 * status = #active
 * experimental = false
-* date = "2026-03-31"
+* date = "2026-09-10"
 * kind = #requirements
 * fhirVersion = #4.0.1
 
 * format[0] = #json
-* format[+] = #xml
 * format[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * format[=].extension.valueCode = #SHALL
-* format[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* format[=].extension.valueCode = #SHOULD
 * publisher = "Australian Digital Health Agency"
 * contact[0].telecom.system = #email
 * contact[0].telecom.value = "help@digitalhealth.gov.au"
@@ -32,8 +29,8 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 // HCPD_Provenance resource
 * rest.resource[+].type = #Provenance
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-provenance"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHOULD
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].documentation = "This resource is used to track the provenance of data retrieved, updated, or verified from external systems of record for HC resources."
 
 // Provenance interactions - client capabilities
@@ -54,8 +51,8 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 // Organization
 * rest.resource[+].type = #Organization
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-organization"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHALL
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHALL
 * rest.resource[=].documentation = "This section defines the supported interactions by a Requester Actor for the HCPD Organization profile of the Organization resource type."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -78,12 +75,22 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "active"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Organization-active"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
 
 // Location
 * rest.resource[+].type = #Location
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-location"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHOULD
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].documentation = "This section introduces the supported interactions by a Requester Actor for the HCPD Location profile."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -127,12 +134,22 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #special
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "status"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Location-status"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
  
 // HealthcareService
 * rest.resource[+].type = #HealthcareService
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-healthcareservice"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHOULD
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].documentation = "This section introduces the supported interactions by a Requester Actor for the [HCPD Healthcare Service](StructureDefinition-hcpd-healthcareservice.html) profile."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -176,12 +193,27 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "active"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/HealthcareService-active"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "healthcareservice-type-display"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/healthcareservice-type-display"
+* rest.resource[=].searchParam[=].type = #string
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
 
 // PractitionerRole
 * rest.resource[+].type = #PractitionerRole
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitionerrole"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHOULD
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].documentation = "This section defines the supported interactions for the [HCPD Practitioner Role](StructureDefinition-hcpd-practitionerrole.html) profile of the PractitionerRole resource type. Each PractitionerRole resource conforming to the [HCPD Practitioner Role](StructureDefinition-hcpd-practitionerrole.html) profile describes a practitioner in a role at a healthcare service."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -226,12 +258,27 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "active"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/PractitionerRole-active"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "practitionerrole-code-display"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/hcpd/SearchParameter/practitionerrole-code-display"
+* rest.resource[=].searchParam[=].type = #string
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
 
 // Practitioner
 * rest.resource[+].type = #Practitioner
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHALL
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHALL
 * rest.resource[=].documentation = "This section defines the supported interactions for the [HCPD Practitioner](StructureDefinition-hcpd-practitioner.html) profile of the Practitioner resource type."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -262,12 +309,22 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "active"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Practitioner-active"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
 
 // Endpoint
 * rest.resource[+].type = #Endpoint
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-endpoint"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHOULD
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].documentation = "This section defines the supported interactions for the [HCPD Endpoint](StructureDefinition-hcpd-endpoint.html) profile of the Endpoint resource type. Each Endpoint resource conforming to the [HCPD Endpoint](StructureDefinition-hcpd-endpoint.html) profile is a read-only proxy for a corresponding Endpoint resource published by the HCPD portal."
 * rest.resource[=].interaction.code = #read
 * rest.resource[=].interaction[+].code = #search-type
@@ -306,22 +363,14 @@ The requirements of the Health Connect Provider Directory Requester actor may al
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
-* rest.interaction.code = #search-system
-* rest.interaction.documentation = "**Definition**:\r\n    \n This operation is a RESTful *search* interaction (whole system interaction), across multiple resource types (as described in the [FHIR specification](https://www.hl7.org/fhir/http.html#search)). \r\n    \n\r\n    \n **Behaviour**:\r\n    \n This operation is used by a client system operated by a Health Connect Provider Directory Requester to get resources that match the specified search parameters. .\r\n    \n\r\n    \n The following  search parameters are supported:\r\n    \n\r\n    \n * *_lastUpdated* is used to get the resources that have been added or changed since the requesting system last synchronised their local data store with Health Connect Provider Directory Requester.  This search parameter supports the ```gt``` and ```lt``` comparison prefixes.\r\n    \n * *_type* is used to filter the resources returned by their resource type. The available types are: \r\n    \n\r\n    \n   * ```HealthcareService``` (returns resources conforming to the [HCPD Healthcare Service](StructureDefinition-hcpd-healthcareservice.html) profile)\r\n    \n   * ```PractitionerRole``` (returns resources conforming to the [HCPD Practitioner Role](StructureDefinition-hcpd-practitionerrole.html) profile)\r\n    \n   * ```Organization``` (returns resources conforming to the [HCPD Organization](StructureDefinition-hcpd-organization.html) profile)\r\n    \n   * ```Location``` (returns resources conforming to the [HCPD Location](StructureDefinition-hcpd-location.html) profile)\r\n    \n   * ```Practitioner``` (returns resources conforming to the [HCPD Practitioner](StructureDefinition-hcpd-practitioner.html) profile)\r\n    \n   * ```Provenance``` (returns resources conforming to the [HCPD Provenance](StructureDefinition-hcpd-provenance.html) profile)\r\n    \n   \r\n    \n \r\n    \n All of the following query parameters are required in order to receive the complete set of resources that have been created, changed or published since *[last_synchronized]*:\r\n    \n\r\n    \n ``` _lastUpdated=[last_synchronized] ```\r\n    \n ```_type=HealthcareService,PractitionerRole,Practitioner,Organization,Location,Provenance ```\r\n    \n ```_include=Location:organization ```\r\n    \n ```_include=HealthcareService:organization ```\r\n    \n ```_include=HealthcareService:location ```\r\n    \n ```_include=PractitionerRole:organization ```\r\n    \n ```_include=PractitionerRole:location ```  \r\n    \n ```_include=PractitionerRole:service ```\r\n    \n ```_include=PractitionerRole:practitioner ``` \r\n    \n ```_include=Provenance:target ```   \r\n    \n ```_include:iterate=HealthcareService:organization  ```  \r\n    \n ```_include:iterate=HealthcareService:location ```\r\n    \n ```_include:iterate=PractitionerRole:organization ```\r\n    \n ```_include:iterate=PractitionerRole:location ```\r\n    \n ```_include:iterate=PractitionerRole:service ```\r\n    \n ```_include:iterate=PractitionerRole:practitioner ```\r\n    \n \r\n    \n As described above the resources returned in the Bundle exclude any *Identifiers* (e.g. HPI-Is) that cannot be disclosed to the subscriber.\r\n    \n \r\n    \n This operation supports 'paging' ([see FHIR specification](https://www.hl7.org/fhir/search.html#Paging)).  If there are too many resources to return in one ```Bundle```, the FHIR server adds a *next* link to the response ```Bundle```. The contents of the result ```Bundle``` therefore comprise all instances of the requested resource types whose *lastUpdated* timestamp is greater than the \\<lastSync\\> in the request query expression and less than or equal to \\<lastInBundle\\> where \\<lastInBundle\\> is the greatest *lastUpdated* value of all resources included in the result ```Bundle```. The Subscriber Agent FHIR server sets the *next* link to the filter expression that was used in the original request except that \\<lastSync\\> is replaced with \\<lastInBundle\\>. If the *next* link is not present in the Bundle, then there are no more service offerings available.    "
-* rest.searchParam[0].name = "_lastUpdated"
-* rest.searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Resource-lastUpdated"
-* rest.searchParam[=].type = #date
-* rest.searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.searchParam[=].extension[=].valueCode = #SHOULD
-* rest.searchParam[+].name = "_type"
-* rest.searchParam[=].type = #token
-* rest.searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.searchParam[=].extension[=].valueCode = #SHOULD
-* rest.searchParam[+].name = "_include"
-* rest.searchParam[=].type = #special
-* rest.searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.searchParam[=].extension[=].valueCode = #SHOULD
-* rest.searchParam[+].name = "_resultId"
-* rest.searchParam[=].type = #special
-* rest.searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "status"
+* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Endpoint-status"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+* rest.resource[=].searchParam[+].name = "suppressed"
+* rest.resource[=].searchParam[=].definition = "http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
+

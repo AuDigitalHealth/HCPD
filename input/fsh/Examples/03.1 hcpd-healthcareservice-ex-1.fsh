@@ -21,7 +21,7 @@ Description: "A Residential Aged Care HealthcareService example conforming to th
 * appointmentRequired = true
 * availableTime.daysOfWeek[+] = #mon
 * coverageArea.reference = "Location/example-healthconnect-mobile-unit-coverage-area-1"
-* endpoint.reference = "Endpoint/example-hcpd-endpoint-smd"
+* endpoint.reference = "Endpoint/example-hcpd-endpoint-hl7-fhir-messaging"
 * availableTime.daysOfWeek[+] = #tue
 * availableTime.daysOfWeek[+] = #wed
 * availableTime.daysOfWeek[+] = #thu
@@ -44,7 +44,13 @@ Referrals can be faxed to **(02) 1234 5679**.
 * extension[+].url = "http://digitalhealth.gov.au/fhir/cc/StructureDefinition/iar-levels-of-care"
 * extension[=].valueCodeableConcept = $IARCodeSystem#level3 "Level 3 - Moderate intensity services"
 * extension[+].url = "http://digitalhealth.gov.au/fhir/cc/StructureDefinition/new-patient-availability"
-* extension[=].valueCodeableConcept = https://www.healthterminologies.gov.au/integration/R4/fhir/CodeSystem/new-patient-availability-1#accepting "Accepting new patients"
+* extension[=].valueCodeableConcept = https://healthterminologies.gov.au/fhir/CodeSystem/new-patient-availability-1#accepting "Accepting new patients"
+
+* active = true
+
+* identifier[HCPD_Source_Identifier].type = $v2-0203-int#RI
+* identifier[HCPD_Source_Identifier].system = "http://ns.electronichealth.net.au/id/source/pca"
+* identifier[HCPD_Source_Identifier].value = "HS-PCA-001234"
 
 * identifier[HCPD_Local_Identifier].type = $v2-0203-int#XX "Organization identifier"
 * identifier[HCPD_Local_Identifier].system = "http://digitalhealth.gov.au/fhir/hcpd/id/hcpd-local-identifier"
@@ -55,5 +61,5 @@ Referrals can be faxed to **(02) 1234 5679**.
 * communication[+] = urn:ietf:bcp:47#it "Italian"
 * communication[+] = urn:ietf:bcp:47#zh "Chinese"
 
-* serviceProvisionCode[+] = http://terminology.hl7.org.au/CodeSystem/service-provision-conditions#FAP "Fees apply"
-* serviceProvisionCode[+] = http://terminology.hl7.org.au/CodeSystem/service-provision-conditions#NFE "No fee"
+* serviceProvisionCode[+] = http://digitalhealth.gov.au/fhir/hcpd/CodeSystem/service-provision-cs#FAP "Fees Apply"
+* serviceProvisionCode[+] = http://digitalhealth.gov.au/fhir/hcpd/CodeSystem/service-provision-cs#NFE "No Fee"

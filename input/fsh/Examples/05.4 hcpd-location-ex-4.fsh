@@ -6,6 +6,9 @@ Description: "A physical medical centre location example with wheelchair access,
 
 * meta.lastUpdated = "2025-09-01T14:45:30Z"
 
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#organisation-initiated
+
+* status = #inactive
 * identifier[+].type = $v2-0203#NATAS "NATA Site Number"
 * identifier[=].type.text = "NATA Site Number"
 * identifier[=].system = "http://hl7.org.au/id/nata-site"
@@ -19,6 +22,10 @@ Description: "A physical medical centre location example with wheelchair access,
 * identifier[HCPD_Local_Identifier].type = $v2-0203-int#XX "Organization identifier"
 * identifier[HCPD_Local_Identifier].system = "http://digitalhealth.gov.au/fhir/hcpd/id/hcpd-local-identifier"
 * identifier[HCPD_Local_Identifier].value = "7dfa51ea-aaba-4d76-af8b-d9f901a00412"
+
+* identifier[HCPD_Source_Identifier].type = $v2-0203-int#RI "Resource Identifier"
+* identifier[HCPD_Source_Identifier].system = "http://example.org/fhir/identifier/location" // Example: assigned by external system when ingested
+* identifier[HCPD_Source_Identifier].value = "hcpd-SI-4245"
 
 * name = "Sydney Central Medical Centre"
 * alias = "Central Medical Centre"
@@ -59,7 +66,7 @@ Description: "A physical medical centre location example with wheelchair access,
 * telecom[email].use = #work
 
 * telecom[+].system = #url
-* telecom[=].value = "https://www.sydneycentralmc.com.au"
+* telecom[=].value = "https://www.example.com/sydneycentralmc"
 * telecom[=].use = #work
 
 * telecom[+].system = #fax

@@ -1,8 +1,12 @@
 ### Extensions
 Extensions introduced in this profile:
+* PractitionerRole: [PractitionerRole Communication](StructureDefinition-practitioner-role-communication.html)
+* PractitionerRole: [Alternate Name](StructureDefinition-alternate-name.html)
+* PractitionerRole: [Suppressed](StructureDefinition-suppressed.html)
+* PractitionerRole: [Deactivated](StructureDefinition-deactivated.html)
 
-    * [PractitionerRole Communication](StructureDefinition-practitioner-role-communication.html)
-    * [Alternate Name](StructureDefinition-alternate-name.html)
+#### Suppressed
+The [extension:suppressed](StructureDefinition-suppressed.html) is used to indicate if this resource should be hidden from display in the Provider Directory. Either a Practitioner or an Organisation can initiate a request to hide visibility of a role from those searching the Health Connect Provider Directory system. Presence of the extension indicates the resource is suppressed; the extension's coded value identifies who initiated the suppression (for example, practitioner or organisation). In order to be visible and searchable on the HCPD system, neither code will need to be present. For more details, please see the extension intro notes.
 
 #### PractitionerRole Communication
 The [extension:practitioner-role-communication](StructureDefinition-practitioner-role-communication.html) records communication preferences (languages and contact modes) for the practitioner in this role.

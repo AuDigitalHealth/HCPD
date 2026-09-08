@@ -5,15 +5,6 @@ Title: "HCPD Provenance"
 Description: "This profile of Provenance is used to track activities related to provider directory data, recording when specific data elements of a HCPD Organization or HCPD Practitioner resource have been retrieved, updated or verified."
 * ^experimental = false
 * ^status = #active
-* ^publisher = "Australian Digital Health Agency"
-* ^contact.name = "Australian Digital Health Agency"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.digitalhealth.gov.au"
-* ^contact.telecom[+].system = #email
-* ^contact.telecom[=].value = "help@digitalhealth.gov.au"
-* ^useContext.code = http://terminology.hl7.org/CodeSystem/usage-context-type#jurisdiction
-* ^useContext.valueCodeableConcept = urn:iso:std:iso:3166#AU "Australia"
-* ^copyright = "Copyright © 2026 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See https://creativecommons.org/licenses/by/4.0/."
 * . ^short = "Tracks activities related to provider directory data changes"
 * . ^definition = "Tracks activities related to provider directory data, recording when specific data elements of a HCPD Organization or HCPD Practitioner resource have been retrieved, updated or verified."
 * target ..1 MS

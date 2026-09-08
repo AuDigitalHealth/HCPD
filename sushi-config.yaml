@@ -3,9 +3,9 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: au.gov.digitalhealth.hcpd
+id: au.gov.digitalhealth.fhir.hcpd
 canonical: http://digitalhealth.gov.au/fhir/hcpd
-date: 2026-04-29
+date: 2026-09-10
 name: HCPD_ImplementationGuide
 title: Health Connect Australia Provider Directory FHIR Implementation Guide
 description: This Implementation Guide defines an Health Connect Australia Provider Directory within Australian context.
@@ -16,18 +16,9 @@ version: "26.0.0"
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 
 copyrightYear: 2026+
-releaseLabel: Trial
 license: CC-BY-4.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 
-useContext:
-  - code:
-      system: "http://terminology.hl7.org/CodeSystem/usage-context-type"
-      code: "jurisdiction"
-    valueCodeableConcept:
-      coding:
-        - system: "urn:iso:std:iso:3166"
-          code: "AU"
-          display: "Australia"
+jurisdiction: urn:iso:std:iso:3166#AU "Australia"
 
 publisher:
   name: Australian Digital Health Agency
@@ -89,6 +80,8 @@ pages:
     title: FHIR Artefacts
     profiles-and-extensions.md:
       title: Profiles and Extensions
+    pbprn-systems.md:
+      title: PBPRN Supported Systems
     terminology.md:
       title: Terminology
     actors.md:
@@ -99,6 +92,12 @@ pages:
       title: Search Parameters
   examples.md:
     title: Examples
+  api-overview.md:
+    title: Health Connect Provider Directory API Overview
+    search-api.md:
+      title: Search API Technical Specification
+    export-api.md:
+      title: Export API Technical Specification
   support.md:
     title: Support
     known-issues.md:
@@ -107,6 +106,8 @@ pages:
       title: Downloads
   changelog.md:
     title: Change Log
+    contributing.md:
+      title: Contributing
   legal.md:
     title: Licence and Legal
 
@@ -137,7 +138,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-jurisdiction: true
   apply-publisher: true
   apply-version: true
-  apply-copyright: false
+  apply-copyright: true
   default-copyright: true
   show-inherited-invariants: false
   usage-stats-opt-out: true
@@ -161,7 +162,6 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - generate #generate: Log when producing an individual resource (troubleshooting only - leave off)
     - init #init: Messages describing the start up process (for debugging)
     - progress #progress: Overall progress messages
-  releaselabel: CI Build
 
   # pin-canonical documentation: https://build.fhir.org/ig/FHIR/ig-guidance/branches/master/pinning.html
   # pin-canonical discussion: https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/Canonical.20Pinning/with/534497073
@@ -175,7 +175,11 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/new-patient-availability, 
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/practitioner-role-communication, 
                 http://digitalhealth.gov.au/fhir/cc/StructureDefinition/referral-information-for-referrer,
-                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/suppressed]
+                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/suppressed,
+                http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type,
+                http://digitalhealth.gov.au/fhir/cc/ValueSet/responsible-party-type,
+                http://digitalhealth.gov.au/fhir/cc/StructureDefinition/pbprn,
+                http://digitalhealth.gov.au/fhir/cc/SearchParameter/suppressed]
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
 # │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
@@ -199,6 +203,10 @@ menu:
     "Capability Statements": capability-statements.html
     "Search Parameters": search-parameters.html
   Examples: examples.html
+  HCPD API:
+    "HCPD API Summary": api-overview.html
+    "Search API": search-api.html
+    "Export API": export-api.html
   Support:
     "Known Issues": known-issues.html
     "Downloads": downloads.html
@@ -218,7 +226,10 @@ menu:
 contact:
   - name: Australian Digital Health Agency
     telecom:
-      - system: email # phone | fax | email | pager | url | sms | other
+      - system: url
+        value: https://www.digitalhealth.gov.au
+        use: work
+      - system: email
         value: mailto:help@digitalhealth.gov.au
         use: work
 # 
@@ -297,8 +308,8 @@ contact:
 # * modifierExtension
 experimental: false
 # * useContext
-copyright: Copyright © 2026 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
-packageId: au.gov.digitalhealth.hcpd
+copyright: This content is licensed under a Creative Commons Attribution 4.0 International License. See [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+packageId: au.gov.digitalhealth.fhir.hcpd
 #
 #
 # ╭──────────────────────────────────────────SUSHI flags───────────────────────────────────────────╮

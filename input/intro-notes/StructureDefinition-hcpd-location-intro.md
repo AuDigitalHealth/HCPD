@@ -4,6 +4,11 @@ No data is entered directly into Health Connect; all Directory content is source
 Extensions introduced in this profile:
 * Location: [Amenity](StructureDefinition-amenity.html)
 * Location: [HCPD Alternate Postal Address](StructureDefinition-hcpd-alternate-postal-address.html)
+* Location: [Suppressed](StructureDefinition-suppressed.html)
+* Location: [Deactivated](StructureDefinition-deactivated.html)
+
+### Visibility and Suppression
+The HCPD Location profile supports the [Suppressed](StructureDefinition-suppressed.html) extension, however its application is conceptually driven by organizational visibility decisions. When an [HCPD Organization](StructureDefinition-hcpd-organization.html) elects to hide their visibility from those searching the Health Connect Provider Directory system by applying the suppressed extension with an `organisation-initiated` code, all associated Location resources are automatically suppressed and excluded from Provider Directory listings. This cascading suppression ensures that when an organization chooses to hide their visibility, related locations "come for the ride" and are similarly hidden from display, maintaining consistency across the directory.
 
 ### Usage notes
 Publishing guidance:
@@ -59,4 +64,9 @@ Implementation note: This rule is a *warning* - virtual locations should be clea
 Description: A Location resource MUST include either a `type` or a `physicalType` element.
 
 Implementation note: This rule is enforced as an error - every Location must be classified either by `type` (logical role such as `MOBL`, `VI`, etc.) or by `physicalType` (when the Location represents a specific physical characteristic). Implementers MUST populate at least one of these elements when creating Location resources.
+
+##### Invariant: inv-05-status-values
+Description: Location.`status` must be `active` or `inactive`. The `suspended` status is not used in HCPD.
+
+Implementation note: This rule is enforced as an error - HCPD only recognises active and inactive states for a Location. Publishing systems MUST NOT set `status` to `suspended`. When a Location is no longer available it should be set to `inactive`.
 

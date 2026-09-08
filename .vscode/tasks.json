@@ -24,6 +24,36 @@
             "problemMatcher": []
         },
         {
+      "label": "Trigger auto build - main branch",
+      "type": "shell",
+      "command": "curl -X POST \"https://us-central1-fhir-org-starter-project.cloudfunctions.net/ig-commit-trigger\" -H \"Content-type: application/json\" --data '{\"ref\": \"refs/heads/main\", \"repository\": {\"full_name\": \"AuDigitalHealth/HCPD\"}}'"
+        },
+        {
+            "label": "Run IG Publisher (after SUSHI)",
+            "type": "shell",
+            "command": "java",
+            "args": [
+                "-Xmx8g",
+                "-Djava.awt.headless=true",
+                "-jar",
+                "input-cache/publisher.jar",
+                "-ig",
+                ".",
+                "-no-sushi"
+            ],
+            "group": "build",
+            "dependsOn": "Run SUSHI only",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Run IG Publisher (after SUSHI)",
             "type": "shell",
             "command": "java",

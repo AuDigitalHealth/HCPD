@@ -23,13 +23,31 @@ The following **standard FHIR R4** search parameters are **recommended** for Pra
   - Search for PractitionerRoles by SNOMED or other coding values in `PractitionerRole.code`.
   - Example: `GET /PractitionerRole?role=309339007`
 
+- [`active`](https://hl7.org/fhir/R4/practitionerrole.html#search) (PractitionerRole.active)
+  - Filter practitioner roles by whether they are currently active. Use token semantics for boolean values.
+  - Example: `GET /PractitionerRole?active=true`
+
+      **Note:**  Adding `?active=false` returns records that are inactive, Implementers should be aware that returned results MAY include records marked for suppression; it is the responsibility of the implementer that suppressed records SHALL be filtered out before display.   
+
 #### Search parameters defined in this IG
 The following search parameters are **defined by this IG** and **SHOULD** be supported:
+
+- [`suppressed`](SearchParameter-suppressed.html) (PractitionerRole.extension where url = suppressedBy extension)
+  - Search for practitioner roles by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /PractitionerRole?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|practitioner-initiated`
+  - Example (code only): `GET /PractitionerRole?suppressed=practitioner-initiated`
+  - Example (system only): `GET /PractitionerRole?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
 
 - [`languages`](SearchParameter-languages.html) (PractitionerRole.extension where url = HC practitioner role communication).  Supports `system|code` or `code`.  
   - Find practitioner roles by the languages spoken by the practitioner in this role, stored in the HC communication extension. This is a shared SearchParameter that works across both HealthcareService and PractitionerRole resources.
   - Example: `GET /PractitionerRole?languages=it` (Italian code for bcp-47)
   - Example: `GET /PractitionerRole?languages=de` (German code for bcp-47)
+
+- [`code-display`](SearchParameter-practitionerrole-code-display.html). Supports string search.
+  -  Find practitioner roles by the display text of the role type (specialty, occupation, or role description) defined in PractitionerRole.code.
+  - Example: `GET /PractitionerRole?code-display=General Practitioner`
+  - Example: `GET /PractitionerRole?code-display=Cardiologist`
+  - Example: `GET /PractitionerRole?code-display=Nurse Practitioner`
 
 ##### Availability 
 
@@ -44,7 +62,7 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
   - Example (weekend): `GET /PractitionerRole?daysofweek=sat,sun`
 
 **Availability (Start/End Time)**
-- Shared parameters: [starttime](SearchParameter-starttime.md) and [endtime](SearchParameter-endtime.md) work for both HealthcareService and PractitionerRole.
+- Shared parameters: [starttime](SearchParameter-starttime.html) and [endtime](SearchParameter-endtime.html) work for both HealthcareService and PractitionerRole.
   - Format: Numeric HHMM (e.g., 0800 for 8:00 AM, 1730 for 5:30 PM). Do not include colons in queries.
   - Matching: Numeric comparisons with prefix operators.
   - Prefix operators: `eq` (=), `ge` (>=), `gt` (>), `le` (<=), `lt` (<), `ne` (!=). When no prefix is specified, `eq` is implied.
@@ -83,6 +101,18 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
         <td><b>SHOULD</b></td>
         <td><code>token</code></td>
         <td>Standard FHIR `role` search parameter on PractitionerRole.code</td>
+  </tr>
+  <tr>
+        <td>active (R4)</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
+  </tr>
+  <tr>
+        <td>suppressed</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
   </tr>
   <tr>
         <td>languages</td>

@@ -5,14 +5,6 @@ Title: "HCPD SMD Target Identifier (HCPD-SMDTI)"
 Description: "This identifier profile defines a SMD target identifier allocated to a healthcare practitioner, in a Health Connect Provider Directory context."
 * ^experimental = false
 * ^status = #active
-* ^publisher = "Australian Digital Health Agency"
-* ^contact.name = "Australian Digital Health Agency"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.digitalhealth.gov.au"
-* ^contact.telecom[+].system = #email
-* ^contact.telecom[=].value = "help@digitalhealth.gov.au"
-* ^useContext.code = http://terminology.hl7.org/CodeSystem/usage-context-type#jurisdiction
-* ^useContext.valueCodeableConcept = urn:iso:std:iso:3166#AU "Australia"
 * . ^short = "SMD Target Identifier"
 * . ^definition = "SMD Target Identifier that the practitioner has with Professional association / Peak body association (for non-Ahpra registered practitioners), as recorded against the HPI-I record."
 * system 1..1

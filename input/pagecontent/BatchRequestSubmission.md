@@ -55,11 +55,11 @@ Bulk extraction focused on retrieving organizational data using standard FHIR id
   - ABN: `identifier=http://hl7.org.au/id/abn|[ABN]`
   - ACN: `identifier=http://hl7.org.au/id/acn|[ACN]`
 - **Organisation name filtering** - Filter by name using `_typeFilter=Organization?name=[NAME]`
-- **Complete relationship mapping** - Use FHIR `_include` and `_revinclude` parameters to retrieve:
+- **Complete relationship mapping** - Name each related resource type in `_type` and give each its own `_typeFilter`, using chained and reverse-chained parameters to express the relationship:
   - Related Locations, HealthcareServices, PractitionerRoles
   - Associated Practitioners and Endpoints
 
-*Note: For complete organizational ecosystems, combine organization filtering with appropriate `_include` parameters in subsequent queries.*
+*Note: `_include`, `_include:iterate`, `_revinclude`, and `_revinclude:iterate` are **not supported** inside a `_typeFilter`. Relationship traversal in an export is expressed with chained and reverse-chained (`_has:`) search parameters on each type instead — see [Relationship traversal is not available in an export](export-api.html#relationship-traversal-is-not-available-in-an-export). Example 1 below shows the pattern.*
 
 #### Healthcare service type-centric extraction
 
@@ -67,7 +67,7 @@ Bulk extraction focused on specific healthcare services using standard FHIR serv
 
 - **SNOMED-CT-AU service type filtering** - Filter services using `_typeFilter=HealthcareService?service-type=[SYSTEM]|[CODE]`
 - **Combined filtering approaches** - Use multiple `_typeFilter` parameters to combine service types with geographical constraints
-- **Service ecosystem mapping** - Use FHIR `_include` and `_revinclude` parameters to retrieve:
+- **Service ecosystem mapping** - Name each related resource type in `_type` with its own reverse-chained `_typeFilter` to retrieve:
   - Organizations providing the service type
   - Locations where services are delivered
   - PractitionerRoles and Practitioners facilitating the services

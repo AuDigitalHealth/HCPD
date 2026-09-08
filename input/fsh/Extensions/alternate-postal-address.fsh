@@ -7,8 +7,8 @@ Description: "Carries an alternate postal/mailing address for correspondence (PO
 * ^url = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-alternate-postal-address"
 * ^status = #active
 * ^experimental = false
-* ^publisher = "Australian Digital Health Agency"
 * ^description = "Alternate postal/mailing address for correspondence (PO Box or mailing address) that is distinct from the registered physical address."
+
 * value[x] only Address
 * valueAddress 1..1
 * valueAddress.type = #postal (exactly)

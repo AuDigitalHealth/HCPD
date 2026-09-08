@@ -1,8 +1,3 @@
-Invariant: inv-01-qualification-registration-required
-Description: "At least one professional registration must be present in qualifications (Ahpra or other professional registration)"
-Expression: "qualification.identifier.where(type.coding.where(code = 'AHPRA').exists()).exists() or qualification.identifier.where(type.coding.where(code = 'PRN').exists()).exists()"
-Severity: #error
-
 Profile: HCPD_Practitioner
 Parent: AUCorePractitioner
 Id: hcpd-practitioner
@@ -10,23 +5,12 @@ Title: "HCPD Practitioner"
 Description: "This profile defines a Health Connect Provider Directory entry for a healthcare practitioner."
 * ^status = #active
 * ^experimental = false
-* ^publisher = "Australian Digital Health Agency"
-* ^contact.name = "Australian Digital Health Agency"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.digitalhealth.gov.au"
-* ^contact.telecom[+].system = #email
-* ^contact.telecom[=].value = "help@digitalhealth.gov.au"
-* ^useContext.code = http://terminology.hl7.org/CodeSystem/usage-context-type#jurisdiction
-* ^useContext.valueCodeableConcept = urn:iso:std:iso:3166#AU "Australia"
 * ^purpose = "This profile addresses the business requirement for standardised practitioner information representation in the Health Connect Provider Directory, ensuring consistent capture of healthcare practitioner details including professional identifiers and qualifications for directory search and referral purposes."
-* ^copyright = "Copyright © 2026 Australian Digital Health Agency - All rights reserved. This content is licensed under a Creative Commons Attribution 4.0 International License. See https://creativecommons.org/licenses/by/4.0/."
 * . ^short = "Healthcare Provider Individual"
 * . ^definition = "The practitioner is an individual who provides healthcare or healthcare related services and is
 registered by a registration authority as a member of a health profession and/or is a member of a
 healthcare professional association that relates to healthcare, and who has been assigned a
 healthcare identifier (HPI-I)."
-
-* obeys inv-01-qualification-registration-required
 
 * extension[recordedSexOrGender] 1..1 MS
 * extension[recordedSexOrGender] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
@@ -39,8 +23,52 @@ healthcare identifier (HPI-I)."
 * extension[recordedSexOrGender] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * extension[recordedSexOrGender] ^extension[=].extension[+].url = "actor"
 * extension[recordedSexOrGender] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* extension[recordedSexOrGender] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[recordedSexOrGender] ^extension[=].extension[+].url = "code"
+* extension[recordedSexOrGender] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* extension[recordedSexOrGender] ^extension[=].extension[+].url = "actor"
+* extension[recordedSexOrGender] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 
-
+* extension contains Suppressed named suppressed 0..1 MS and Deactivated named deactivated 0..1 MS
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#practitioner-initiated (exactly)
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding 1..1 MS
+* extension[suppressed] ^short = "indicates whether the Practitioner should be hidden."
+* extension[suppressed] ^definition = "A coded value, when present, indicates whether the Practitioner should be hidden from display in the Provider Directory."
+* extension[suppressed] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[suppressed] ^extension[=].extension[+].url = "code"
+* extension[suppressed] ^extension[=].extension[=].valueCode = #SHALL:populate-if-known
+* extension[suppressed] ^extension[=].extension[+].url = "actor"
+* extension[suppressed] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/responder-actor-health-connect"
+* extension[suppressed] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[suppressed] ^extension[=].extension[+].url = "code"
+* extension[suppressed] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* extension[suppressed] ^extension[=].extension[+].url = "actor"
+* extension[suppressed] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* extension[suppressed] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[suppressed] ^extension[=].extension[+].url = "code"
+* extension[suppressed] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* extension[suppressed] ^extension[=].extension[+].url = "actor"
+* extension[suppressed] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
+ 
+* extension[deactivated].extension[deactivatedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#practitioner-initiated (exactly)
+* extension[deactivated].extension[deactivatedBy].valueCodeableConcept.coding 1..1 MS
+* extension[deactivated] ^short = "indicates whether the Practitioner should be hidden."
+* extension[deactivated] ^definition = "When present, this extension marks the Practitioner as deactivated, and deactivation automatically cascades to all child resources."
+* extension[deactivated] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[deactivated] ^extension[=].extension[+].url = "code"
+* extension[deactivated] ^extension[=].extension[=].valueCode = #SHALL:populate-if-known
+* extension[deactivated] ^extension[=].extension[+].url = "actor"
+* extension[deactivated] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/responder-actor-health-connect"
+* extension[deactivated] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[deactivated] ^extension[=].extension[+].url = "code"
+* extension[deactivated] ^extension[=].extension[=].valueCode = #SHALL:ignore
+* extension[deactivated] ^extension[=].extension[+].url = "actor"
+* extension[deactivated] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* extension[deactivated] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* extension[deactivated] ^extension[=].extension[+].url = "code"
+* extension[deactivated] ^extension[=].extension[=].valueCode = #SHALL:ignore
+* extension[deactivated] ^extension[=].extension[+].url = "actor"
+* extension[deactivated] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 
 * identifier 1..* MS
 * identifier ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
@@ -55,11 +83,16 @@ healthcare identifier (HPI-I)."
 * identifier ^extension[=].extension[=].valueCode = #SHOULD:handle
 * identifier ^extension[=].extension[+].url = "actor"
 * identifier ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* identifier ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* identifier ^extension[=].extension[+].url = "code"
+* identifier ^extension[=].extension[=].valueCode = #SHOULD:handle
+* identifier ^extension[=].extension[+].url = "actor"
+* identifier ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * identifier ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * identifier ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 
 * identifier[hpii] 1..1 MS
-* identifier[hpii] only AUHPII
+* identifier[hpii] only HCPD_HPII_Identifier
 * identifier[hpii] ^short = "HPI-I identifier"
 * identifier[hpii] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
 * identifier[hpii] ^extension[=].extension[+].url = "code"
@@ -73,6 +106,11 @@ healthcare identifier (HPI-I)."
 * identifier[hpii] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * identifier[hpii] ^extension[=].extension[+].url = "actor"
 * identifier[hpii] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* identifier[hpii] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* identifier[hpii] ^extension[=].extension[+].url = "code"
+* identifier[hpii] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* identifier[hpii] ^extension[=].extension[+].url = "actor"
+* identifier[hpii] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * identifier[hpii] ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * identifier[hpii] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 
@@ -92,6 +130,11 @@ healthcare identifier (HPI-I)."
 * name ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name ^extension[=].extension[+].url = "actor"
 * name ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name ^extension[=].extension[+].url = "code"
+* name ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name ^extension[=].extension[+].url = "actor"
+* name ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 * name contains officialName 1..1 MS and
@@ -113,9 +156,14 @@ healthcare identifier (HPI-I)."
 * name[officialName].family ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name[officialName].family ^extension[=].extension[+].url = "actor"
 * name[officialName].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name[officialName].family ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name[officialName].family ^extension[=].extension[+].url = "code"
+* name[officialName].family ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name[officialName].family ^extension[=].extension[+].url = "actor"
+* name[officialName].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name[officialName].family ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name[officialName].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
-* name[officialName].given 0..1
+* name[officialName].given 0..*
 * name[officialName].given ^short = "Practitioner's given name"
 * name[officialName].given ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
 * name[officialName].given ^extension[=].extension[+].url = "code"
@@ -129,6 +177,11 @@ healthcare identifier (HPI-I)."
 * name[officialName].given ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name[officialName].given ^extension[=].extension[+].url = "actor"
 * name[officialName].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name[officialName].given ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name[officialName].given ^extension[=].extension[+].url = "code"
+* name[officialName].given ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name[officialName].given ^extension[=].extension[+].url = "actor"
+* name[officialName].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name[officialName].given ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name[officialName].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 * name[officialName].prefix 0..1
@@ -145,6 +198,11 @@ healthcare identifier (HPI-I)."
 * name[officialName].prefix ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name[officialName].prefix ^extension[=].extension[+].url = "actor"
 * name[officialName].prefix ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name[officialName].prefix ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name[officialName].prefix ^extension[=].extension[+].url = "code"
+* name[officialName].prefix ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name[officialName].prefix ^extension[=].extension[+].url = "actor"
+* name[officialName].prefix ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name[officialName].prefix ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name[officialName].prefix ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 
@@ -165,6 +223,11 @@ healthcare identifier (HPI-I)."
 * name[alternate-name].family ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name[alternate-name].family ^extension[=].extension[+].url = "actor"
 * name[alternate-name].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name[alternate-name].family ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name[alternate-name].family ^extension[=].extension[+].url = "code"
+* name[alternate-name].family ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name[alternate-name].family ^extension[=].extension[+].url = "actor"
+* name[alternate-name].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name[alternate-name].family ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name[alternate-name].family ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 * name[alternate-name].given 0..*
@@ -181,11 +244,15 @@ healthcare identifier (HPI-I)."
 * name[alternate-name].given ^extension[=].extension[=].valueCode = #SHOULD:handle
 * name[alternate-name].given ^extension[=].extension[+].url = "actor"
 * name[alternate-name].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* name[alternate-name].given ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* name[alternate-name].given ^extension[=].extension[+].url = "code"
+* name[alternate-name].given ^extension[=].extension[=].valueCode = #SHOULD:handle
+* name[alternate-name].given ^extension[=].extension[+].url = "actor"
+* name[alternate-name].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * name[alternate-name].given ^extension[=].extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/snapshot-source"
 * name[alternate-name].given ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-practitioner"
 
-
-
+* telecom MS
 * telecom ^slicing.discriminator[0].type = #value
 * telecom ^slicing.discriminator[=].path = "system"
 * telecom ^slicing.discriminator[+].type = #value
@@ -211,6 +278,11 @@ healthcare identifier (HPI-I)."
 * telecom[personalPhoneNumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * telecom[personalPhoneNumber] ^extension[=].extension[+].url = "actor"
 * telecom[personalPhoneNumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* telecom[personalPhoneNumber] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* telecom[personalPhoneNumber] ^extension[=].extension[+].url = "code"
+* telecom[personalPhoneNumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* telecom[personalPhoneNumber] ^extension[=].extension[+].url = "actor"
+* telecom[personalPhoneNumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * telecom[personalPhoneNumber].value 1..1
 
 * telecom[personalEmailAddress].system = #email (exactly)
@@ -227,6 +299,11 @@ healthcare identifier (HPI-I)."
 * telecom[personalEmailAddress] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * telecom[personalEmailAddress] ^extension[=].extension[+].url = "actor"
 * telecom[personalEmailAddress] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* telecom[personalEmailAddress] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* telecom[personalEmailAddress] ^extension[=].extension[+].url = "code"
+* telecom[personalEmailAddress] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* telecom[personalEmailAddress] ^extension[=].extension[+].url = "actor"
+* telecom[personalEmailAddress] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * telecom[personalEmailAddress].value 1..1
 
 * qualification 1.. MS
@@ -242,8 +319,13 @@ healthcare identifier (HPI-I)."
 * qualification ^extension[=].extension[=].valueCode = #SHOULD:handle
 * qualification ^extension[=].extension[+].url = "actor"
 * qualification ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* qualification ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* qualification ^extension[=].extension[+].url = "code"
+* qualification ^extension[=].extension[=].valueCode = #SHOULD:handle
+* qualification ^extension[=].extension[+].url = "actor"
+* qualification ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 
-* qualification.identifier 1..1 MS  
+* qualification.identifier 0..1 MS  
 * qualification.identifier ^short = "An identifier for this qualification"
 * qualification.identifier ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
 * qualification.identifier ^extension[=].extension[+].url = "code"
@@ -255,6 +337,11 @@ healthcare identifier (HPI-I)."
 * qualification.identifier ^extension[=].extension[=].valueCode = #SHOULD:handle
 * qualification.identifier ^extension[=].extension[+].url = "actor"
 * qualification.identifier ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* qualification.identifier ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* qualification.identifier ^extension[=].extension[+].url = "code"
+* qualification.identifier ^extension[=].extension[=].valueCode = #SHOULD:handle
+* qualification.identifier ^extension[=].extension[+].url = "actor"
+* qualification.identifier ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * qualification.identifier ^slicing.discriminator.type = #pattern
 * qualification.identifier ^slicing.discriminator.path = "type"
 * qualification.identifier ^slicing.rules = #open
@@ -275,8 +362,13 @@ healthcare identifier (HPI-I)."
 * qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[+].url = "actor"
 * qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* qualification.identifier[ahpraregistrationnumber] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[+].url = "code"
+* qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[+].url = "actor"
+* qualification.identifier[ahpraregistrationnumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 
-* qualification.identifier[peakbodyregistrationnumber] only HCPD_Peak_Body_Registration_Number  
+* qualification.identifier[peakbodyregistrationnumber] only Peak_Body_Professional_Registration_Number  
 * qualification.identifier[peakbodyregistrationnumber] ^short = "Peak body, association or societal professional registration number for non-Ahpra practitioners"
 * qualification.identifier[peakbodyregistrationnumber] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
 * qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[+].url = "code"
@@ -288,6 +380,11 @@ healthcare identifier (HPI-I)."
 * qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
 * qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[+].url = "actor"
 * qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* qualification.identifier[peakbodyregistrationnumber] ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[+].url = "code"
+* qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[=].valueCode = #SHOULD:handle
+* qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[+].url = "actor"
+* qualification.identifier[peakbodyregistrationnumber] ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 
 * qualification.code MS
 * qualification.code ^short = "Profession of the Practitioner."
@@ -302,6 +399,11 @@ healthcare identifier (HPI-I)."
 * qualification.code ^extension[=].extension[=].valueCode = #SHOULD:handle
 * qualification.code ^extension[=].extension[+].url = "actor"
 * qualification.code ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/requester-actor-health-connect"
+* qualification.code ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/obligation"
+* qualification.code ^extension[=].extension[+].url = "code"
+* qualification.code ^extension[=].extension[=].valueCode = #SHOULD:handle
+* qualification.code ^extension[=].extension[+].url = "actor"
+* qualification.code ^extension[=].extension[=].valueCanonical = "http://digitalhealth.gov.au/fhir/hcpd/ActorDefinition/bulk-export-requester-actor-health-connect"
 * qualification.code.text 1..1 MS
 * qualification.code.text ^short = "Text representation of the Practitioner Profession."
 

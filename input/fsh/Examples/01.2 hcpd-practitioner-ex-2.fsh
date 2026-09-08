@@ -5,9 +5,11 @@ Title: "HCPD Practitioner Example: External Record (PRN)"
 Description: "An external practitioner record example (PRN identifier) conforming to the HCPD Practitioner profile."
 
 * extension[recordedSexOrGender].extension[value].valueCodeableConcept = $administrative-gender#male "Male"
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#practitioner-initiated
 
 * identifier[hpii].value = "8003616566719020"
-
+* identifier[hpii].extension[hcpd-hpii-status].valueCoding = $hcpd-hi-status-cs#A "Active"
+* active = false
 * name[officialName].use = #official
 * name[officialName].family = "Fryer"
 * name[officialName].given = "John"

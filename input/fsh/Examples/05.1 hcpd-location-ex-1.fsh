@@ -6,6 +6,8 @@ Description: "A mobile healthcare unit location example with wheelchair access, 
 
 * meta.lastUpdated = "2025-09-01T14:45:30Z"
 
+* status = #active
+
 * identifier[+].type = $v2-0203#NATAS "NATA Site Number"
 * identifier[=].type.text = "NATA Site Number"
 * identifier[=].system = "http://hl7.org.au/id/nata-site"
@@ -19,6 +21,10 @@ Description: "A mobile healthcare unit location example with wheelchair access, 
 * identifier[HCPD_Local_Identifier].type = $v2-0203-int#XX "Organization identifier"
 * identifier[HCPD_Local_Identifier].system = "http://digitalhealth.gov.au/fhir/hcpd/id/hcpd-local-identifier"
 * identifier[HCPD_Local_Identifier].value = "26ff4c29-692f-45c7-8df7-99cf6b5a8c09"
+
+* identifier[HCPD_Source_Identifier].type = $v2-0203-int#RI "Resource Identifier"
+* identifier[HCPD_Source_Identifier].system = "http://example.org/fhir/identifier/location" // Example: assigned by external system when ingested
+* identifier[HCPD_Source_Identifier].value = "hcpd-SI-4243"
 
 * name = "Mobile Healthcare Unit - Sydney CBD"
 * alias = "CBD Mobile Unit"
@@ -59,7 +65,7 @@ Description: "A mobile healthcare unit location example with wheelchair access, 
 * telecom[email].use = #work
 
 * telecom[+].system = #url
-* telecom[=].value = "https://www.sydneycentralmc.com.au"
+* telecom[=].value = "https://www.example.com/sydneycentralmc"
 * telecom[=].use = #work
 
 * telecom[+].system = #fax

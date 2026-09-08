@@ -16,6 +16,12 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
   - Search for locations by their physicalType field. Use token semantics for coded physical type values from the Location Type (Physical) ValueSet.
   - Example: `GET /Location?locationphysicaltype=http://terminology.hl7.org/CodeSystem/location-physical-type|wa`
 
+- [`suppressed`](SearchParameter-suppressed.html) (Location.extension where url = suppressedBy extension)
+  - Search for locations by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /Location?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|practitioner-initiated`
+  - Example (code only): `GET /Location?suppressed=practitioner-initiated`
+  - Example (system only): `GET /Location?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
+
 #### Search parameters from R4
 The following search parameters are **inherited from FHIR R4** and have been deemed useful for implementation within this IG. They **SHOULD** be supported:
 
@@ -39,6 +45,14 @@ The following search parameters are **inherited from FHIR R4** and have been dee
   - Sort modifiers: `_sort=near` (closest first), `_sort=-near` (furthest first).
   - Example: `GET /Location?near=-33.8688|151.2093|0.5` (within 0.5km of Sydney CBD coordinates)
   - Example with sorting: `GET /Location?near=-33.8688|151.2093|3&_sort=near` (closest locations first within 3km)
+
+- [`status`](https://hl7.org/fhir/R4/location.html#search)
+  - For HC Location records, implementers SHALL use only the following `Location.status` values: `active` or `inactive`. The `suspended` status is not used in HCPD.
+  - Example: `GET /Location?status=active`
+
+      **Note:** Adding `?status=inactive` records that are inactive. Implementers should be aware that returned results MAY include records marked for suppression; it is the responsibility of the implementer that suppressed records SHALL be filtered out before display.
+
+Implementation note: `Location.status` values are constrained to `active` or `inactive` only. The `suspended` status is not used in HCPD.
 
 <br/><br/>*Note:* Support for _id is mandatory for a responder and optional for a requester. Where the expectation for a search parameter differs between actors, the table below will reflect the stronger conformance requirement.
 
@@ -87,6 +101,12 @@ The following search parameters are **inherited from FHIR R4** and have been dee
         <td></td>
   </tr>
   <tr>
+      <td>suppressed</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
+  </tr>
+  <tr>
         <td>type (R4)</td>
         <td><b>SHOULD</b></td>
         <td><code>token</code></td>
@@ -97,6 +117,12 @@ The following search parameters are **inherited from FHIR R4** and have been dee
         <td><b>SHOULD</b></td>
         <td><code>special</code></td>
         <td>Geographical proximity search using latitude|longitude|distance format. Can be sorted by distance using _sort=near</td>
+  </tr>
+  <tr>
+        <td>status (R4)</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
   </tr>
   <tr>
         <td>name+type</td>

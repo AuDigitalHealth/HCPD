@@ -1,11 +1,16 @@
 No data is entered directly into Health Connect; all Directory content is sourced from authoritative systems including [PCA](https://developer.digitalhealth.gov.au/fhir/provider-connect-australia/current/index.html?src=/), HI-Service, and NHSD.
 
 
-#### Extensions
+### Extensions
 Extensions introduced in this profile:
 * Endpoint: [AU Receiving Facility](http://hl7.org.au/fhir/StructureDefinition/au-receivingfacility)
 * Endpoint: [AU Receiving Application](http://hl7.org.au/fhir/StructureDefinition/au-receivingapplication)
 * Endpoint: [Encryption Certificate PEM X509](http://hl7.org.au/fhir/StructureDefinition/encryption-certificate-pem-x509)
+* Endpoint: [Suppressed](StructureDefinition-suppressed.html)
+* Endpoint: [Deactivated](StructureDefinition-deactivated.html)
+
+### Visibility and Suppression
+The HCPD Endpoint profile supports the [Suppressed](StructureDefinition-suppressed.html) extension, however its application is conceptually driven by organizational visibility decisions. When an [HCPD Organization](StructureDefinition-hcpd-organization.html) elects to hide their visibility from those searching the Health Connect Provider Directory system by applying the suppressed extension with an `organisation-initiated` code, all associated Endpoint resources (whether referenced from HealthcareService, Location, or PractitionerRole) are automatically suppressed and excluded from Provider Directory listings. This cascading suppression ensures that when an organization chooses to hide their visibility, related endpoints "come for the ride" and are similarly hidden from display, maintaining consistency across the directory.
 
 ### Usage notes
 The following guidance expands on operational and implementation expectations for this Endpoint profile.
@@ -25,9 +30,7 @@ The recommended hierarchy for when endpoints **SHOULD** be applied is as follows
 
 #### Implementation requirements vs. processing
 
-Implementers SHALL process all elements marked as Must Support (MS) in this profile to be conformant. However, certain elements that are mandatory do not need to be processed by Health Connect Provider Directory Requester Actors:
-
-- **Endpoint.status**: This element is not MUST SUPPORT but is mandatory therefore it MAY be ignored by implementing systems. A value will be provided but MAY be ignored. 
+Implementers SHALL process all elements marked as Must Support (MS) in this profile to be conformant. However, certain elements that are mandatory do not need to be processed by Health Connect Provider Directory Requester Actors.
 
 #### Initial endpoint scope and future expansion
 
@@ -47,3 +50,10 @@ In FHIR, linkage to resources is owned by the referencing resources (`Healthcare
 
 - Reciprocity cannot be enforced within the Endpoint profile (there is no standard element on Endpoint to list referencing HealthcareService / Location / PractitionerRole resources).
 - Directory governance MUST ensure that when a referencing resource adds or removes an Endpoint, any operational expectations (availability, deprecation, auditing) are handled in process.
+
+#### Invariants
+
+##### Invariant: inv-ep-01-status-values
+Description: Endpoint.`status` must be `active`, `suspended`, or `off`. The `error` and `test` statuses are not used in HCPD.
+
+Implementation note: This rule is enforced as an error - HCPD only recognises active, suspended, and off states for an Endpoint. Publishing systems MUST NOT set `status` to `error` or `test`. When an Endpoint is no longer available it should be set to `off`; `suspended` may be used when the endpoint is temporarily unavailable.

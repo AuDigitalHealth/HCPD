@@ -6,7 +6,7 @@ This CapabilityStatement describes the basic rules for the Health Connect Provid
 
 - [Health Connect Provider Directory Bulk Export Requester](CapabilityStatement-health-connect-bulk-export-requester.html)
 
-This CapabilityStatement describes the specific rules for the [Health Connect Provider Directory Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html) that is responsible for initiating bulk data export operations. This actor submits properly formatted export parameters to the Health Connect Provider Directory Responder and processes the returned bulk data files, including handling HCPD Export Response Lists for resource removal operations.
+This CapabilityStatement describes the specific rules for the [Health Connect Provider Directory Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html) that is responsible for initiating bulk data export operations. This actor submits properly formatted export parameters to the Health Connect Provider Directory Responder and processes the returned bulk data files. Implementers **SHALL** respect the `suppressed` and `deactivated-by` extensions on returned resources, filtering these resources before displaying them to end consumers of the HCPD.
 
 - [Health Connect Provider Directory Responder](CapabilityStatement-health-connect-provider-directory-responder.html)
 

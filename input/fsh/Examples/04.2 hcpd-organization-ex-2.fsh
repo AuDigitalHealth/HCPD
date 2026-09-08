@@ -6,9 +6,11 @@ Description: "A Home Care Support Service example conforming to the HCPD Organiz
 
 * meta.lastUpdated = "2025-09-15T14:20:00Z"
 
-* active = true
+* active = false
 * partOf = Reference(example-healthconnect-organization-1)
-* identifier[hspo].value = "8003641000000001"
+* identifier[hspo].value = "8003641000000209"
+* identifier[hspo].extension[hcpd-hspo-status].valueCoding = $hcpd-hi-status-cs#A "Active"
+* identifier[hspo].value = "8003641000000217"
 * identifier[hspo].extension[hi-org-classification].valueCodeableConcept.coding = $hi-org-class-cs#seed "Seed"
 * identifier[abn].system = "http://hl7.org.au/id/abn"
 * identifier[abn].type.text = "ABN"

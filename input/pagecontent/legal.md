@@ -6,9 +6,9 @@
 
 {% include disclaimers-document_control.md %}
 
-### Copyright © 2026 Australian Digital Health Agency
+### Creative Commons 4.0 licence
 
-{% include disclaimers-adha.md %}
+{% include disclaimers-creativecommons.md %}
 
 ### Regenstrief Institute (LOINC)
 
@@ -26,14 +26,9 @@
 
 {% include disclaimers-hl7_international.md %}
 
-### Creative Commons 4.0 licence
+### Third-party Artefacts and Terminologies
 
-{% include disclaimers-creativecommons.md %}
-
-### Intellectual property considerations
-
-This implementation guide and the underlying FHIR specification are licensed as public domain under the [FHIR license](http://hl7.org/fhir/R4/license.html). The license page also describes rules for the use of the FHIR name and logo.
+Australian Digital Health Agency FHIR Implementation Guides contain and reference intellectual property owned by third parties ("Third Party IP"). Acceptance of these License Terms does not grant any rights with respect to Third Party IP. The licensee alone is responsible for identifying and obtaining any necessary licences or authorisations to utilise Third Party IP in connection with the specification or otherwise.
 
 {% include ip-statements.xhtml %}
 
-OFFICIAL

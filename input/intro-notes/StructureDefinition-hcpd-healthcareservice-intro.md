@@ -6,10 +6,16 @@ Extensions introduced in this profile:
 * HealthcareService: [Active Period](StructureDefinition-active-period.html)
 * HealthcareService: [Accept New Patient](StructureDefinition-new-patient-availability.html)
 * HealthcareService: [Referral Information for Referrer](StructureDefinition-referral-information-for-referrer.html)
+* HealthcareService: [Suppressed](StructureDefinition-suppressed.html)
 * HealthcareService.availableTime.availableStartTime: [Timezone Code](https://hl7.org/fhir/extensions/5.2.0/StructureDefinition-timezone.html)
 * HealthcareService.availableTime.availableEndTime: [Timezone Code](https://hl7.org/fhir/extensions/5.2.0/StructureDefinition-timezone.html)
+* HealthcareService: [Deactivated](StructureDefinition-deactivated.html)
 
-#### Identifiers
+
+### Visibility and Suppression
+The HCPD HealthcareService profile supports the [Suppressed](StructureDefinition-suppressed.html) extension, however its application is conceptually driven by organizational visibility decisions. When an [HCPD Organization](StructureDefinition-hcpd-organization.html) elects to hide their visibility from those searching the Health Connect Provider Directory system by applying the suppressed extension with an `organisation-initiated` code, all associated HealthcareService resources are automatically suppressed and excluded from Provider Directory listings. This cascading suppression ensures that when an organization chooses to hide their visibility, related healthcare services "come for the ride" and are similarly hidden from display, maintaining consistency across the directory.
+
+### Identifiers
 Beyond the identifiers already defined in AU Core the HCPD HealthcareService profile explicitly supports the following identifier slice (as indicated by the must support flag):
 
 * [HCPD Local Identifier (hcpd-LI)](StructureDefinition-hcpd-local-identifier.html)
@@ -17,7 +23,7 @@ Beyond the identifiers already defined in AU Core the HCPD HealthcareService pro
 Unique identifier attributed by the HCPD system. 
 
 ### Usage notes
-The `extension:iar-levels-of-care` is used to indicate the Initial Assessment and Referral (IAR) Levels of Care for a healthcare services that support mental health care. This extension draws its codes from the [Initial Assessment and Referral Levels of Care](https://healthterminologies.gov.au/fhir/ValueSet/iar-levels-of-care-1) ValueSet. 
+The `extension:iar-levels-of-care` is used to indicate the Initial Assessment and Referral (IAR) Levels of Care for healthcare services that support mental health care. This extension draws its codes from the [Initial Assessment and Referral Levels of Care](https://healthterminologies.gov.au/fhir/ValueSet/iar-levels-of-care-1) ValueSet. 
 
 #### Accept new patient
 CodeableConcept datatype that indicates whether the healthcare service is accepting new patients.

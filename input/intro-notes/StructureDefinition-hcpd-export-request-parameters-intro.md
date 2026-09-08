@@ -1,7 +1,7 @@
 ## Scope
 This section describes the structure and intended use for a HCPD Export Request Parameters resource. This resource is used **ONLY** within the context of the [Bulk Data Extract](bulk-data-extraction.html) capability of the HCPD system for submitting export requests. It contains the parameters that control the scope, format, and filtering of bulk data export operations.
 
-The HCPD Export Request Parameters resource is used by [Client Requestor Actors](ActorDefinition-requester-actor-health-connect.html) to specify their bulk data export requirements. This profile ensures consistent parameter usage across different export scenarios including geographical filtering, organization-centric extraction, and healthcare service type-centric extraction.
+The HCPD Export Request Parameters resource is used by [Client Requester Actors](ActorDefinition-requester-actor-health-connect.html) to specify their bulk data export requirements. This profile ensures consistent parameter usage across different export scenarios including geographical filtering, organization-centric extraction, and healthcare service type-centric extraction.
 
 ## Usage notes
 The HCPD Export Request Parameters resource contains standard FHIR bulk export parameters that control the export operation. This profile enforces proper parameter usage and ensures that type and typeFilter parameters are synchronized.
@@ -34,7 +34,7 @@ Based on the parameter combinations, the following export scenarios are supporte
 - **SNOMED-CT service types**: _typeFilter=HealthcareService?service-type=[SYSTEM]|[CODE]
 
 ### Implementation requirements
-Client Requestor Actors **SHALL** use this profile structure when submitting bulk export requests to ensure consistent parameter formatting and validation. When using `_type` and `_typeFilter` parameters, the number of filter parameters **MUST** equal the number of resource types specified (enforced by invariant hcpd-exp-1).
+Client Requester Actors **SHALL** use this profile structure when submitting bulk export requests to ensure consistent parameter formatting and validation. When using `_type` and `_typeFilter` parameters, the number of filter parameters **MUST** equal the number of resource types specified (enforced by invariant hcpd-exp-1).
 
 ### Parameter reference
 

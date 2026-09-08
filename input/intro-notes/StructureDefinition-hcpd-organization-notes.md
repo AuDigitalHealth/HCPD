@@ -21,6 +21,21 @@ The following parameters are inherited from [R4](https://hl7.org/fhir/R4/organiz
       Standard R4 parameter that searches Organization.type.coding using token semantics (system|code).
       Example: `Organization?type=http://snomed.info/sct|257652008`
 
+- [`active`](https://hl7.org/fhir/R4/organization.html#search)  
+      Standard R4 parameter that filters organizations by their active status (boolean token).
+      Example: `GET /Organization?active=true`
+
+      **Note:** Adding `?active=false` returns records that are inactive, Implementers should be aware that returned results MAY include records marked for suppression; it is the responsibility of the implementer that suppressed records SHALL be filtered out before display.
+
+#### Search parameters defined in this IG
+The following search parameters are **defined by this IG** and **SHOULD** be supported:
+
+- [`suppressed`](SearchParameter-suppressed.html) (Organization.extension where url = suppressedBy extension)
+  - Search for organizations by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /Organization?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|organisation-initiated`
+  - Example (code only): `GET /Organization?suppressed=organisation-initiated`
+  - Example (system only): `GET /Organization?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
+
 <table class="list">
 <tbody>
       <tr>
@@ -72,6 +87,18 @@ The following parameters are inherited from [R4](https://hl7.org/fhir/R4/organiz
             <td></td>
       </tr>
       <tr>
+            <td>active (R4)</td>
+            <td><b>SHOULD</b></td>
+            <td><code>token</code></td>
+            <td></td>
+      </tr>
+      <tr>
+            <td>suppressed</td>
+            <td><b>SHOULD</b></td>
+            <td><code>token</code></td>
+            <td></td>
+      </tr>
+      <tr>
             <td>HPI-O + type</td>
             <td><b>SHOULD</b></td>
             <td><code>token</code> + <code>token</code></td>
@@ -84,7 +111,7 @@ The following parameters are inherited from [R4](https://hl7.org/fhir/R4/organiz
 
 This implementation supports the following `_include` parameters when searching for Organization resources:
 
-* `_include=Organization:partOf` - Include parent organizations referenced by the `partOf` element
+* `_include=Organization:partof` - Include parent organizations referenced by the `partOf` element
 
 ### Search reverse include parameters
 
@@ -95,8 +122,14 @@ This implementation supports the following `_revinclude` parameters when searchi
 
 #### Example usage
 
+This query returns a Bundle containing the Organization with id 123, plus any Location and HealthcareService resources that reference it.
+
 ```text
-GET /Organization/123?_revinclude=Location:organization&_revinclude=HealthcareService:organization
+GET /Organization?_id=123&_revinclude=Location:organization&_revinclude=HealthcareService:organization
 ```
 
-This query returns the Organization resource along with all associated Locations and HealthcareServices.
+This query returns a Bundle containing the Organization with id 123, plus any PractitionerRole resources where PractitionerRole.organization references that Organization.
+
+```text
+GET /Organization?_id=123&_revinclude=PractitionerRole:organization
+```

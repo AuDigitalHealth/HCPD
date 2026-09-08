@@ -21,14 +21,14 @@ CodeSystems
 CodeSystems
 - [Facility Amenities](https://healthterminologies.gov.au/fhir/CodeSystem/facility-amenity-1)
 - [New Patient Availability](https://www.healthterminologies.gov.au/integration/R4/fhir/CodeSystem/new-patient-availability-1)
-- [Service Eligibility](https://healthterminologies.gov.au/fhir/CodeSystem/service-eligibility-1)
+- [Service Eligibility](https://healthterminologies.gov.au/fhir/CodeSystem/service-eligibility-2)
 - [IAR Levels of Care](https://healthterminologies.gov.au/fhir/CodeSystem/iar-levels-of-care-1)
 
 ValueSets
 - [Facility Amenities](https://healthterminologies.gov.au/fhir/ValueSet/facility-amenity-1)
 - [New Patient Availability](https://www.healthterminologies.gov.au/integration/R4/fhir/ValueSet/new-patient-availability-1)
 - [Service Delivery Role Type](https://healthterminologies.gov.au/fhir/ValueSet/service-delivery-location-role-type-1)
-- [Service Eligibility](https://healthterminologies.gov.au/fhir/ValueSet/service-eligibility-1)
+- [Service Eligibility](https://healthterminologies.gov.au/fhir/ValueSet/service-eligibility-2)
 - [IAR Levels of Care](https://healthterminologies.gov.au/fhir/ValueSet/iar-levels-of-care-1)
 
 

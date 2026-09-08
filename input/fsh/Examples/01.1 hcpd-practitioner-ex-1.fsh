@@ -7,8 +7,10 @@ Description: "An example Practitioner (Alex Smith) conforming to the HCPD Practi
 * meta.lastUpdated = "2025-08-25T14:30:00+10:00"
 
 * extension[recordedSexOrGender].extension[value].valueCodeableConcept = $administrative-gender#female "Female"
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#practitioner-initiated
 
 * identifier[hpii].value = "8003619900015717"
+* identifier[hpii].extension[hcpd-hpii-status].valueCoding = $hcpd-hi-status-cs#A "Active"
 
 * qualification.identifier[ahpraregistrationnumber].system = "http://hl7.org.au/id/ahpra-registration-number"
 * qualification.identifier[ahpraregistrationnumber].value = "MED0000932945"

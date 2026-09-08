@@ -3,6 +3,14 @@ The search parameters defined in this implementation guide specify the recommend
 
 The Health Connect Provider Directory supports all search parameters defined in this implementation guide, plus inherited FHIR search capabilities from the derived profiles. All search parameters are marked as **SHOULD** support for the Health Connect Provider Directory Requester Actor, allowing implementers flexibility in choosing which parameters to support based on their specific use cases and integration requirements. Client systems can utilise any of the available search parameters, and should conform to the specifications and constraints defined herein where applicable to their use case.
 
+#### Default response behaviour — active and non-suppressed resources only
+
+By default, **real-time searches** against the Health Connect Provider Directory return **active, non-suppressed resources only**:
+
+To retrieve inactive resources via real-time search, use the standard R4 `active` or `status` search parameters (e.g. `?active=false` or `?status=inactive`). Be aware that results for inactive resource queries **MAY** include suppressed resources; implementers **SHALL** check each returned resource for the presence of the Suppressed extension and filter them out before display.
+
+**Bulk data extraction** behaves differently — exports return **all resources** regardless of active status or suppression. Implementers consuming bulk export data **SHALL** apply active and suppression filtering before presenting or using the data.
+
 #### Useful standard search parameters for this IG
 
 [**_lastUpdated**](https://hl7.org/fhir/R4/search.html#lastUpdated): Enables querying resources based on when they were last modified in the Health Connect Provider Directory. This parameter is particularly useful for synchronization scenarios where client systems need to identify resources that have changed since a specific point in time. The parameter supports comparison prefixes to enable flexible date range queries:
@@ -136,6 +144,18 @@ This section lists the custom SearchParameters that have been defined within thi
 		<tr>
 			<td><a href="SearchParameter-practitioner-identifier-r5.html">Practitioner Identifier (R5)</a></td>
 			<td>Search a Practitioner record by any identifier, including HPI-I and Professional Registration Number (PRN), mimicks R5-style identifier searching. Supports both <code>Practitioner.identifier</code> and <code>Practitioner.qualification.identifier</code>.</td>
+		</tr>
+		<tr>
+			<td><a href="SearchParameter-suppressed.html">Suppressed</a></td>
+			<td>Search Practitioner, PractitionerRole, HealthcareService, Location, Organization and Endpoint resources by the presence of the Suppression extension and optionally a coded value for who initiated it.</td>
+		</tr>
+		<tr>
+			<td><a href="SearchParameter-healthcareservice-type-display.html">HealthcareService Type Name</a></td>
+			<td>Search HealthcareServices by the display name of the healthcare service type.</td>
+		</tr>
+		<tr>
+			<td><a href="SearchParameter-practitionerrole-code-display.html">PractitionerRole Role Name</a></td>
+			<td>Search PractitionerRoles by the display name of the practitioner role code.</td>
 		</tr>
 	</tbody>
 </table>

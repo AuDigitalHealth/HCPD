@@ -2,21 +2,18 @@ Instance: health-connect-bulk-export-requester
 InstanceOf: CapabilityStatement
 Usage: #definition
 Title: "Health Connect Provider Directory Bulk Export Requester"
-Description: "This CapabilityStatement resource defines the expected capabilities of the [Health Connect Provider Directory Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html) when conforming to this implementation guide. This actor is specifically designed for bulk data export operations and does not support standard FHIR REST search interactions. The listed FHIR profiles and operations describe the capabilities required for initiating bulk exports and processing the returned data, including handling resource removal lists."
+Description: "This CapabilityStatement resource defines the expected capabilities of the [Health Connect Provider Directory Bulk Export Requester Actor](ActorDefinition-bulk-export-requester-actor-health-connect.html) when conforming to this implementation guide. This actor is specifically designed for bulk data export operations and does not support standard FHIR REST search interactions. The listed FHIR profiles and operations describe the capabilities required for initiating bulk exports and processing the returned data."
 
 * name = "HealthConnectProviderDirectoryBulkExportRequester"
 * url = "http://digitalhealth.gov.au/fhir/hcpd/CapabilityStatement/health-connect-bulk-export-requester"
 * status = #active
 * experimental = false
-* date = "2026-04-29"
+* date = "2026-09-10"
 * kind = #requirements
 * fhirVersion = #4.0.1
 
 * format[0] = #json
-* format[+] = #xml
 * format[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* format[=].extension.valueCode = #SHALL
-* format[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * format[=].extension.valueCode = #SHALL
 * publisher = "Australian Digital Health Agency"
 * contact[0].telecom.system = #email
@@ -29,14 +26,34 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 // Parameters (HCPD Export Request Parameters for Bulk Data Export)
 * rest.resource[+].type = #Parameters
 * rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-request-parameters"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHALL
+* rest.resource[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = #SHALL
 * rest.resource[=].documentation = "This section defines the supported interactions for submitting [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) resources as search instructions for bulk data export operations. The client SHALL be able to form properly structured Parameters resources containing _outputFormat, _type, _typeFilter, and optionally _since parameters to control bulk data export scope and format. The server validates these parameters before executing the bulk export."
 * rest.resource[=].interaction[0].code = #read
 * rest.resource[=].interaction[+].code = #search-type
 * rest.resource[=].interaction[=].documentation = "Submit HCPD Export Request Parameters as search instructions for bulk data export operations"
 * rest.resource[=].versioning = #versioned
 * rest.resource[=].readHistory = false
+* rest.resource[=].searchParam[+].name = "_outputFormat"
+* rest.resource[=].searchParam[=].type = #string
+* rest.resource[=].searchParam[=].documentation = "Specifies the output format for bulk export. Fixed to application/fhir+ndjson."
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHALL
+* rest.resource[=].searchParam[+].name = "_type"
+* rest.resource[=].searchParam[=].type = #string
+* rest.resource[=].searchParam[=].documentation = "Comma-separated list of resource types to include in the bulk export (e.g. Organization,Location,HealthcareService,Practitioner,PractitionerRole,Endpoint,Provenance)."
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHALL
+* rest.resource[=].searchParam[+].name = "_typeFilter"
+* rest.resource[=].searchParam[=].type = #string
+* rest.resource[=].searchParam[=].documentation = "FHIR search expression applied to a specific resource type to filter which resources are included in the export. One _typeFilter SHALL be provided for each resource type specified in _type. Supported filter expressions include: Location?address-state, Location?address-postalcode, Location?address-city, Location?near, Organization?identifier, Organization?name, HealthcareService?service-type, PractitionerRole?location.address-city, PractitionerRole?location.address-postalcode."
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHALL
+* rest.resource[=].searchParam[+].name = "_since"
+* rest.resource[=].searchParam[=].type = #date
+* rest.resource[=].searchParam[=].documentation = "Only resources updated since the specified instant (ISO 8601) will be included in the export. Used for delta/incremental extracts."
+* rest.resource[=].searchParam[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension[=].valueCode = #SHOULD
 // Aggregated searchInclude parameters from all other resource types
 * rest.resource[=].searchInclude[0] = "Provenance:target"
 * rest.resource[=].searchInclude[+] = "Organization:partOf"
@@ -60,17 +77,6 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 * rest.resource[=].searchRevInclude[+] = "Location:endpoint"
 * rest.resource[=].searchRevInclude[+] = "PractitionerRole:endpoint"
 
-// List (HCPD Export Response List for processing removal operations)
-* rest.resource[+].type = #List
-* rest.resource[=].profile = "http://digitalhealth.gov.au/fhir/hcpd/StructureDefinition/hcpd-export-response-list"
-* rest.resource[=].profile.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].profile.extension[=].valueCode = #SHALL
-* rest.resource[=].documentation = "This section defines the required capabilities for processing [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) resources received as part of bulk data export operations. The client SHALL be able to read and parse these List resources to identify resource identifiers that must be removed from local systems in compliance with suppression requirements."
-* rest.resource[=].interaction[0].code = #read
-* rest.resource[=].interaction[=].documentation = "Read HCPD Export Response List resources received through bulk export operations to identify resources for local removal"
-* rest.resource[=].versioning = #versioned
-* rest.resource[=].readHistory = false
-
 // Binary (Bulk Export Data Files)
 * rest.resource[+].type = #Binary
 * rest.resource[=].documentation = "This section defines the required capabilities for retrieving Binary resources containing bulk exported data files. After submitting export parameters and receiving export completion notification, the client SHALL be able to retrieve the Binary resources containing the exported data in ndjson format."
@@ -82,5 +88,4 @@ Description: "This CapabilityStatement resource defines the expected capabilitie
 // System-level operations for bulk data export
 * rest.operation[+].name = "export"
 * rest.operation[=].definition = "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/export"
-* rest.operation[=].documentation = "This operation enables the client to initiate bulk data export requests by submitting Parameters input structured according to [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) profile. The operation SHALL accept parameters including _outputFormat, _type, _typeFilter, and optionally _since to control bulk data export scope and format. The operation SHALL return URLs to ndjson files containing the requested resource types. When applicable, the response may include [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) resources that the client MUST process to remove those resource identifiers from local systems."
-* rest.operation[=].documentation = "This operation enables the client to initiate bulk data export requests by submitting [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) resources to the Health Connect Provider Directory Responder. The operation SHALL return URLs to ndjson files containing the requested resource types. When applicable, the response may include [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) resources that the client MUST process to remove those resource identifiers from local systems."
+* rest.operation[=].documentation = "This operation enables the client to initiate bulk data export requests by submitting [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) resources to the Health Connect Provider Directory Responder. The operation SHALL accept parameters including _outputFormat, _type, _typeFilter, and optionally _since to control bulk data export scope and format. The operation SHALL return URLs to ndjson files containing the requested resource types. Bulk data extraction returns all resources regardless of active status or suppression; implementers SHALL respect the suppressed and deactivated-by extensions on returned resources, filtering these resources before displaying them to end consumers."

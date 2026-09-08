@@ -19,7 +19,6 @@ Client systems claiming conformance as a **Health Connect Provider Directory Req
 Client systems claiming conformance as a **Bulk Export Requester Actor** SHALL be able to correctly interpret and process bulk exported resources conforming to the following target profiles, respecting their defined data structures:
 
 - [HCPD Export Request Parameters](StructureDefinition-hcpd-export-request-parameters.html) — parameters data structure conformance for initiating bulk export operations
-- [HCPD Export Response List](StructureDefinition-hcpd-export-response-list.html) — list data structure conformance for processing removal operations in bulk export responses
 
 For the profiles above, Health Connect Provider Directory Requester Actors SHOULD support discovery and retrieval operations (for example `search` and `read`) while ensuring they can correctly parse and utilize the structured data according to profile specifications. See the FHIR HTTP operations documentation ([FHIR HTTP operations](https://hl7.org/fhir/R4/http.html)) and the AU Core general requirements ([AU Core general requirements](https://hl7.org.au/fhir/core/2.0.0-ballot/general-requirements.html)) for full details. Health Connect Provider Directory Requester Actors SHOULD consult the target Server's `CapabilityStatement` to determine the exact set of supported interactions.
 

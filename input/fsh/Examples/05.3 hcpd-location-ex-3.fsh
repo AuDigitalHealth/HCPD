@@ -6,6 +6,9 @@ Description: "A virtual coverage area defining the geographical service boundary
 
 * meta.lastUpdated = "2025-09-01T14:45:30Z"
 
+* extension[suppressed].extension[suppressedBy].valueCodeableConcept.coding = $HCPD_ResponsiblePartyType_CS#organisation-initiated
+
+* status = #inactive
 * identifier[+].type = $v2-0203#LSPN "Location Specific Practice Number"
 * identifier[=].type.text = "LSPN"
 * identifier[=].system = "http://ns.electronichealth.net.au/id/location-specific-practice-number"
@@ -14,6 +17,10 @@ Description: "A virtual coverage area defining the geographical service boundary
 * identifier[HCPD_Local_Identifier].type = $v2-0203-int#XX "Organization identifier"
 * identifier[HCPD_Local_Identifier].system = "http://digitalhealth.gov.au/fhir/hcpd/id/hcpd-local-identifier"
 * identifier[HCPD_Local_Identifier].value = "8df1a0cf-f7aa-4306-98f1-115653885d78"
+
+* identifier[HCPD_Source_Identifier].type = $v2-0203-int#RI "Resource Identifier"
+* identifier[HCPD_Source_Identifier].system = "http://example.org/fhir/identifier/location" // Example: assigned by external system when ingested
+* identifier[HCPD_Source_Identifier].value = "hcpd-SI-4244"
 
 * name = "Sydney CBD Mobile Unit Service Area"
 * description = "Coverage area served by the Sydney CBD Mobile Healthcare Unit, encompassing the central business district and surrounding areas."

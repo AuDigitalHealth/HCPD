@@ -21,6 +21,12 @@ The following **standard FHIR R4** search parameters are **recommended** for pra
   - Example (multiple components with AND logic): `GET /Practitioner?name:contains=John&name:contains=Helen`
   - **Note**: For combined queries, repeat the parameter for AND logic. Comma-separated values create OR logic (e.g., `name:contains=John,Helen` finds "John" OR "Helen")
 
+- [`active`](https://hl7.org/fhir/R4/practitioner.html#search) (Practitioner.active)
+  - Filter practitioners by whether they are currently active. Use token semantics for boolean values.
+  - Example: `GET /Practitioner?active=true`
+      
+      **Note:** Adding `?active=false` returns records that are inactive, Implementers should be aware that returned results MAY include records marked for suppression; it is the responsibility of the implementer that suppressed records SHALL be filtered out before display.
+
 #### Search parameters defined in this IG
 The following search parameters are **defined by this IG** and **SHOULD** be supported:
 
@@ -41,6 +47,12 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
   - Search by a practitioner's recorded sex or gender.
   - **Important**: This searches on the 'value' element within the [individual-recordedSexOrGender](https://hl7.org/fhir/extensions/5.2.0/StructureDefinition-individual-recordedSexOrGender.html) extension (typically administrative gender codes). However, to fully understand the meaning, in the returned results the complete extension structure inclusive of metadata elements: `type`, `source`, `sourceDocument`, `effectivePeriod` should be appraised as a whole.
   - Example: `GET /Practitioner?rsg=http://hl7.org/fhir/administrative-gender|male`
+
+- [`suppressed`](SearchParameter-suppressed.html) (Practitioner.extension where url = suppressedBy extension)
+  - Search for practitioners by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /Practitioner?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|practitioner-initiated`
+  - Example (code only): `GET /Practitioner?suppressed=practitioner-initiated`
+  - Example (system only): `GET /Practitioner?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
 
 - [`regprof`](SearchParameter-practitioner-regprof.html) (Practitioner.qualification.code.text) Supports both `:contains` & `:exact` modifiers.
   - Search by a practitioner's registered profession using string values.
@@ -80,6 +92,18 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
         <td><b>SHOULD</b></td>
         <td><code>string</code></td>
         <td>Search by practitioner's name across all name types (official, preferred, etc.). Standard FHIR R4 search parameter.</td>
+  </tr>
+  <tr>
+        <td>active (R4)</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
+  </tr>
+  <tr>
+      <td>suppressed</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
   </tr>
   <tr>
       <td>regprof</td>

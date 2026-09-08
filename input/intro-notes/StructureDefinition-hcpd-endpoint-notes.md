@@ -22,6 +22,12 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
   - Convenience alias used in this IG's documentation to search by endpoint address.
   - Example: `GET /Endpoint?epurl=https://smd.sydneyhospital.org.au/secure-messaging/endpoint`
 
+- [`suppressed`](SearchParameter-suppressed.html) (Endpoint.extension where url = suppressedBy extension)
+  - Search for endpoints by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /Endpoint?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|practitioner-initiated`
+  - Example (code only): `GET /Endpoint?suppressed=practitioner-initiated`
+  - Example (system only): `GET /Endpoint?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
+
 #### Search parameters from R4
 The following search parameters are **inherited from FHIR R4** and have been deemed useful for implementation within this IG. They **SHOULD** be supported:
 
@@ -37,6 +43,10 @@ The following search parameters are **inherited from FHIR R4** and have been dee
   - Search for endpoints by payload type (CodeableConcept). Use [AU PD Endpoint payload type ValueSet codes](http://hl7.org.au/fhir/pd/ValueSet/endpoint-payload-type) where applicable.
   - Example: `GET /Endpoint?payload-type=http://hl7.org.au/fhir/pd/CodeSystem/endpoint-payload-type|some-payload`
 
+- [`status (R4)`](https://hl7.org/fhir/R4/endpoint.html#search) (Endpoint.status)
+  - Filter endpoints by their operational status. Use token semantics with one of the defined status values: `active`, `suspended`, `error`, `off`, `entered-in-error`, `test`.
+  - Example: `GET /Endpoint?status=active`
+
 
 <br/><br/>*Note:* Support for _id is mandatory for a responder and optional for a requester. Where the expectation for a search parameter differs between actors, the table below will reflect the stronger conformance requirement.
 
@@ -50,6 +60,12 @@ The following search parameters are **inherited from FHIR R4** and have been dee
   </tr>
   <tr>
 		<td>_id</td>
+		<td><b>SHOULD</b></td>
+		<td><code>token</code></td>
+		<td></td>
+  </tr>
+  <tr>
+		<td>status (R4)</td>
 		<td><b>SHOULD</b></td>
 		<td><code>token</code></td>
 		<td></td>
@@ -82,6 +98,12 @@ The following search parameters are **inherited from FHIR R4** and have been dee
 		<td>epurl</td>
 		<td><b>SHOULD</b></td>
 		<td><code>uri</code></td>
+		<td></td>
+  </tr>
+  <tr>
+		<td>suppressed</td>
+		<td><b>SHOULD</b></td>
+		<td><code>token</code></td>
 		<td></td>
   </tr>
   <tr>

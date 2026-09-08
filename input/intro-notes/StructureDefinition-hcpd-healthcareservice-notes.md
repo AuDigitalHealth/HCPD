@@ -10,6 +10,11 @@ This IG defines and intoduces several search parameters in addition to those inh
 
 Note: Values come from the HCPD Healthcare Service value set (SNOMED). Use codes that are children of 224930009 ("Services"), excluding 700232004 ("General medical service").
 
+- [`active`](https://hl7.org/fhir/R4/healthcareservice.html#search) (HealthcareService.active)
+  - Filter healthcare services by whether they are currently active. Use token semantics for boolean values.
+  - Example: `GET /HealthcareService?active=true`
+
+      **Note:** Adding `?active=false` returns records that are inactive, Implementers should be aware that returned results MAY include records marked for suppression; it is the responsibility of the implementer that suppressed records SHALL be filtered out before display.
 
 #### Search parameters defined in this IG
 The following search parameters are **defined by this IG** and **SHOULD** be supported:
@@ -19,6 +24,18 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
   - Supports `system|code` or `code`.  
   - Example: `GET /HealthcareService?languages=it` (Italian code for bcp-47)
   - Example: `GET /HealthcareService?languages=de` (German code for bcp-47)
+
+- [`type-display`](SearchParameter-healthcareservice-type-display.html). Supports string search.
+  - Find health care service type by the display text of the type defined in HealthcareService.type.
+  - Example: `GET /HealthcareService?type-display=Allied health service`
+  - Example: `GET /HealthcareService?type-display=Ambulance service`
+  - Example: `GET /HealthcareService?type-display=Anaesthetic service`
+
+- [`suppressed`](SearchParameter-suppressed.html) (HealthcareService.extension where url = suppressedBy extension)
+  - Search for healthcare services by their suppression status. Use token semantics with a code from the [Responsible Party Type CodeSystem](CodeSystem-responsible-party-type.html).
+  - Example (system\|code): `GET /HealthcareService?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|practitioner-initiated`
+  - Example (code only): `GET /HealthcareService?suppressed=practitioner-initiated`
+  - Example (system only): `GET /HealthcareService?suppressed=http://digitalhealth.gov.au/fhir/cc/CodeSystem/responsible-party-type|`
 
 - [`hsbilling`](SearchParameter-healthcareservice-billing.html) (HealthcareService.serviceProvisionCode)
   - Search for healthcare services by their billing or service provision conditions (for example, bulk billing, fees apply).
@@ -76,7 +93,19 @@ The following search parameters are **defined by this IG** and **SHOULD** be sup
         <td></td>
   </tr>
   <tr>
+        <td>active (R4)</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
+  </tr>
+  <tr>
         <td>languages</td>
+        <td><b>SHOULD</b></td>
+        <td><code>token</code></td>
+        <td></td>
+  </tr>
+  <tr>
+        <td>suppressed</td>
         <td><b>SHOULD</b></td>
         <td><code>token</code></td>
         <td></td>

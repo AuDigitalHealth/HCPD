@@ -1,9 +1,15 @@
 No data is entered directly into Health Connect; all Directory content is sourced from authoritative systems including [PCA](https://developer.digitalhealth.gov.au/fhir/provider-connect-australia/current/index.html?src=/), HI-Service, and NHSD.
 
+### Extensions
+Extensions introduced in this profile:
+* Practitioner: [Suppressed](StructureDefinition-suppressed.html)
+* Practitioner: [Deactivated](StructureDefinition-deactivated.html)
+
+#### Suppressed
+The [extension:suppressed](StructureDefinition-suppressed.html) is used to indicate if this resource should be hidden from display in the Provider Directory. A Practitioner may elect to hide their visibility from those searching the Health Connect Provider Directory system. Presence of the extension indicates the resource is suppressed. When this extension is applied to a HCPD Practitioner resource, its use is constrained to just the `practitioner-initiated` code. For more details, please see the extension intro notes.
+
 ### Usage notes
 The following guidance maps key information requirements for HCPD Practitioner records to fields in the profile. Where a requirement references the HI Service as the authoritative source, publishers SHOULD prefer and validate values-such as practitioner identifiers, and names.
-
-#### Extensions
 
 #### Identifiers
 
@@ -25,6 +31,18 @@ This profile requires profession to be present as human-readable text in `qualif
 
 #### Personal contact details
 Practitioners may optionally provide personal contact details for inclusion in the Provider Directory. This includes `personalPhoneNumber` and `personalEmailAddress`. Publishing systems MUST only include and display these personal contact details if the practitioner has explicitly opted in to being listed; treat these fields as sensitive and do not expose them publicly unless the practitioner has consented.
+
+#### Unsupported Practitioner data attributes
+HCPD is currently not authorised to collect, store, use, disclose, or use as search parameters the following Practitioner data attributes. Where a search parameter exists, use of these elements as search parameters is discouraged:
+
+- Gender Identity
+- Gender
+- Birth Date
+- Photo
+- Address
+- PBSPrescriberNumber
+
+For practitioner sex or gender searches in HCPD, use the supported data element `Recorded Sex or gender (RSG)` rather than `gender` or `gender identity`. Where a search or display requirement refers to sex or gender, publishers SHOULD map to RSG and SHOULD NOT expose `gender` or `gender identity` as user-facing search parameters.
 
 ### Data Integrity and Validation
 

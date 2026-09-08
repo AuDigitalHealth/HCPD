@@ -6,6 +6,12 @@ Description: "An example PractitionerRole (Medicare) that conforms to the HCPD P
 
 * meta.lastUpdated = "2025-09-03T01:23:45Z"
 
+* active = true
+
+* identifier[HCPD_Source_Identifier].type = $v2-0203-int#RI
+* identifier[HCPD_Source_Identifier].system = "http://ns.electronichealth.net.au/id/source/pca"
+* identifier[HCPD_Source_Identifier].value = "PR-PCA-001234"
+
 * identifier[HCPD_Local_Identifier].type = $v2-0203-int#XX "Organization identifier"
 * identifier[HCPD_Local_Identifier].system = "http://digitalhealth.gov.au/fhir/hcpd/id/hcpd-local-identifier"
 * identifier[HCPD_Local_Identifier].value = "16c83541-1b44-4f01-b032-7d5095ed1def"
