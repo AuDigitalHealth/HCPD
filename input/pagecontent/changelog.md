@@ -3,7 +3,7 @@
 Interested in contributing to this IG? See the [Contributing guide](contributing.html) for how to raise issues and propose changes.
 
 ### Release 26.0.0
-- Publication date: 2026-09-10
+- Publication date: 2026-10-19
 - Publication status: release
 - Based on FHIR version: 4.0.1
 

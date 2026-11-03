@@ -5,7 +5,7 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: au.gov.digitalhealth.fhir.hcpd
 canonical: http://digitalhealth.gov.au/fhir/hcpd
-date: 2026-09-10
+date: 2026-10-19
 name: HCPD_ImplementationGuide
 title: Health Connect Australia Provider Directory FHIR Implementation Guide
 description: This Implementation Guide defines an Health Connect Australia Provider Directory within Australian context.
